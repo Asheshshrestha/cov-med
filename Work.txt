@@ -1,0 +1,55 @@
+Doctor Module
+- Add 2
+-Update 1
+-Delete 1
+-List 2
+
+Hopital Module
+-Add 2
+-Update 1
+-Delete 1
+
+Appointment Module
+-Add 3
+-Update 1
+-Delete 1
+-List by time and quota 3
+
+Services Module
+-Add 1
+-Update 1
+-Delete 1
+-List 2
+
+Covid Vaccine Services
+-Add 2
+-Update 1
+-Delete 1
+-List 2
+
+Corona Case Visualization
+-Api Data fetch and show 5
+-Map View 5
+
+----------------
+User Module
+-Add 2
+-Update 2
+-Delete 1
+-Reset Password 2
+-Forget Password 2
+-User Signup(just user) 2
+
+-Admin Panel View 3
+
+-User Panel View 10
+
+Total Hour = 64 hr
+Per Hr charge = NRS 500
+Total Estimated Cost = 64*500 = RS 32000
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+{% load static %}
+<div class="row">
+    <div class="col-md-12 col-sm-">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                ReCaptcha Setttings
+            </div>
+            <div class="panel-body">
+                <p>Version:<b> {{ object.captcha_version }} </b> </p>
+                <p>Site Key:<b> {{ object.site_key }}</b>  </p>
+                <p>Secret Key:<b> {{ object.secret_key }} </b> </p>
+            </div>
+            <div class="panel-footer">
+                <a href="{% url 'update_setting'%}" class="btn btn-success">Update</a>
+            </div>
+        </div>
+    </div>
+</div>

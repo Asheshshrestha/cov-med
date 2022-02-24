@@ -1,0 +1,37 @@
+{% extends 'admin/c-panel/base_layout.html' %}
+{% load static %}
+{% block head %}
+{% include 'admin/c-panel/slices/head.html' %}
+{% endblock head %}
+
+{% block top_navbar %}
+{% include 'admin/c-panel/slices/topbar.html' %}
+{% endblock top_navbar %}
+
+{% block side_navbar %}
+{% include 'admin/c-panel/slices/sidebar.html' %}
+{% endblock side_navbar %}
+
+{% block page_title %}
+{% include 'admin/c-panel/slices/page_title.html' %}
+{% endblock page_title %}
+
+{% block breadcrum %}
+{% include 'admin/c-panel/slices/breadcrum.html' %}
+{% endblock breadcrum %}
+
+{% block message %}
+{% include 'admin/c-panel/slices/messages.html' %}
+{% endblock message %}
+
+{% block page_content %}
+ {% include 'admin/c-panel/pages/user_management/users/slices/user_update_form.html' %}     
+{% endblock page_content %}
+
+{% block footer %}
+{% include 'admin/c-panel/slices/footer.html' %}
+{% endblock footer %}
+
+{% block scripts %}
+{% include 'admin/c-panel/slices/scripts.html' %}
+{% endblock scripts %}

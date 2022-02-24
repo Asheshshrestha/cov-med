@@ -1,0 +1,16 @@
+{% load static %}
+<div class="row">
+    <div class="col-md-12 col-sm-">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Site Name
+            </div>
+            <div class="panel-body">
+                <h2><b> {{ object.website_name|capfirst}}</b></h1>
+            </div>
+            <div class="panel-footer">
+            <a href="{% url 'update_setting'%}" class="btn btn-success">Update</a>
+            </div>
+        </div>
+    </div>
+</div>

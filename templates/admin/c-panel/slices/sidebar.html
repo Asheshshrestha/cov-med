@@ -1,0 +1,101 @@
+{% load static %}
+
+<nav class="navbar-default navbar-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+
+            <li>
+                <a {% if nav_link == 'index' %} class="active-menu" {% endif %} href="{% url 'index' %}"><i class="fas fa-fw fa-tachometer-alt"></i> Dashboard</a>
+            </li>
+            
+            <li>
+                <a {% if nav_link == 'users' %} class="active-menu" {% endif %} href="#"><i class="fas fa-users-cog"></i></i>Users Management<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{% url 'user_list'%}"><i class="fas fa-users"></i>Users</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'group_list' %}"><i class="fas fa-user-tag"></i>Roles</a>
+                    </li>
+                    
+                </ul>
+            </li>
+            {% if perms.test.view_testmodel %}
+            <li>
+                <a {% if nav_link == 'test' %} class="active-menu" {% endif %} href="{% url 'test_list' %}"><i class="fas fa-user-tag"></i>Test</a>
+            </li>
+
+            {% endif %}
+            <li>
+                <a {% if nav_link == 'medcore' %} class="active-menu" {% endif %} href="#"><i class="fa fa-h-square"></i></i>Medic Management<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#"><i class="fa fa-hospital"></i>Hospital</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-user-md"></i>Doctor</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-clipboard"></i>Appointment</a>
+                    </li>
+                    
+                </ul>
+            </li>
+            <li>
+                <a {% if nav_link == 'covidcare' %} class="active-menu" {% endif %} href="#"><i class="fas fa-medkit"></i></i>Covid Management<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#"><i class="fa fa-vine"></i>Vaccine Request</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-cod"></i>Covid Case Management</a>
+                    </li>
+                    
+                </ul>
+            </li>
+            
+
+
+            <li>
+                <a href="#"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#">Second Level Link</a>
+                    </li>
+                    <li>
+                        <a href="#">Second Level Link</a>
+                    </li>
+                    <li>
+                        <a href="#">Second Level Link<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="#">Third Level Link</a>
+                            </li>
+                            <li>
+                                <a href="#">Third Level Link</a>
+                            </li>
+                            <li>
+                                <a href="#">Third Level Link</a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a {% if nav_link == 'settings' %} class="active-menu" {% endif %} href="#"><i class="fa fa-fw fa-cogs"></i>Settings<span class="fa arrow"></span></a>
+                 <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{% url 'setting'%}">Website Settings</a>
+                    </li>
+                    <li>
+                        <a href="#">Profile Settings</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+
+</nav>

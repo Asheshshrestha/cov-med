@@ -1,0 +1,15 @@
+User Management:
+	-Create User
+	-Update User
+	-Reset Password
+	-Delete User
+	-User Grid
+	-User Change Password
+	-Session Timeout
+Role Management
+	-Create Role
+	-Update Role
+	-Delete Role
+	-Role Grid
+
+

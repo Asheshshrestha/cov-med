@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    {% endblock head %}
+</head>
+
+<body>
+    <div id="wrapper">
+        {% block top_navbar %}
+        {% endblock top_navbar %} 
+        
+        {% block side_navbar %} 
+        {% endblock side_navbar %}
+
+        <div id="page-wrapper">
+
+            <div class="header">  
+
+                {% block page_title %}
+                {% endblock page_title %}   
+
+                {% block breadcrum %} 
+                {% endblock breadcrum %} 
+                
+                {% block message %}
+                {% endblock message %}
+
+            </div>
+            <div id="page-inner">
+
+                {% block page_content %} 
+                {% endblock page_content %}
+            </div>
+            {% block footer %}
+            {% endblock footer %}
+           
+        </div>
+    </div>
+    
+    {% block scripts %}
+    {% endblock scripts %}
+</body>
+
+</html>

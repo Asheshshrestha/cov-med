@@ -1,0 +1,30 @@
+{% load static %}
+<div class="row">
+    <div class="col-md-12 col-sm-">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Website Logo and Favicon
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src={{ object.logo_image.url }} class="img-thumbnail float-left" width="100" />
+                    </div>
+                    <div class="col-md-3">
+                        <p>Logo Image Name:<b> {{ object.logo_image}}</b></p>
+                    </div>
+                    <div class="col-md-2">
+                        <img src={{ object.favicon.url }} class="img-thumbnail float-left" width="100" />
+                    </div>
+                    <div class="col-md-3">
+                        <p>Favicon Image Name:<b> {{ object.favicon}}</b></p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-footer">
+                <a href="{% url 'update_setting'%}" class="btn btn-success">Update</a>
+            </div>
+        </div>
+    </div>
+</div>

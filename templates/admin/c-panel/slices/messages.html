@@ -1,0 +1,37 @@
+{% load static %}
+
+{% if messages %}
+        {% for message in messages %}
+            <div  {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %} role="alert">
+                        <strong> {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                    {{ message }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+        {% endfor %}
+{% endif %}
+
+{% comment 'message' %}
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{ error|escape }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{ error|escape }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endcomment %}
