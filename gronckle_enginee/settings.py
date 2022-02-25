@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.admin_panel',
     'apps.user_groups',
     'apps.test',
+    'apps.services',
     #user side apps
     'modules.front_demo',
 
