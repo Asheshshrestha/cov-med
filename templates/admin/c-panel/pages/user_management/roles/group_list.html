@@ -30,7 +30,7 @@
         <div class="panel panel-default">
             <div class="panel-heading ">
                 <span>User Table</span>
-                <a href="{% url 'create_group' %}"class="btn btn-success btn-sm "><i class="far fa-plus-square"></i> Create</a>
+                <a href="{% url 'create_group' %}"class="btn btn-success btn-sm "><i class="far fa-plus-square"></i>Add New</a>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
@@ -46,9 +46,11 @@
                             <tr class="odd gradeX">
                                 <td>{{ group.name|capfirst }}</td>
                                 <td>
-                                {% if group.name|capfirst != 'Master'%}
+                                {% if group.name|capfirst != 'Master' %}
                                 <a href="{% url 'update_group' pk=group.id %}" class="btn btn-primary btn-sm"><i class="far fa-edit"></i> Edit</a>
-								<a href="{% url 'delete_group' pk=group.id %}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Delete</a>
+                                {% if group.name|capfirst != 'User' and group.name|capfirst != 'Doctor'%}
+								    <a href="{% url 'delete_group' pk=group.id %}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Delete</a>
+                                {% endif %}
                                 {% endif %}
                                 
                                 </td>

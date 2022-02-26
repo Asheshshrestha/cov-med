@@ -1,0 +1,792 @@
+/*
+------------------
+
+Template Name: Quarantine - Medical, Doctor and Hospital Theme
+Author: Ingenious_team
+Author Email: ingeniousteam786@gmail.com
+Version: 1
+------------------ */
+
+
+@media (min-width: 1200px) and (max-width: 1300px) {
+   
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+   .about:after{
+    display: none!important;
+}
+    .navbar-brand img{
+        width: 110px;
+    }
+    .btn-bar a,
+    .header-nav .navbar-nav .nav-link {
+    font-size: 20px;
+}
+    .navbar-expand-md .navbar-nav a {
+    margin: 0 5px;
+}
+.banner2_text {
+    margin-top: 60%;
+}
+.medical-img {
+    top: 20px;
+}
+       .slide__content {
+    top: 29%;
+}
+    .banner-area2 .title,
+    .title {
+    font-size: 68px;
+    padding-bottom: 5px;
+        line-height: 60px;
+}
+    .banner-area2 p,
+    .banner_text p{
+        padding-bottom: 20px;
+    }
+    .banner-area2 {
+    height: 560px;
+        overflow-x: hidden;
+}
+    .title span {
+    font-size: 52px;
+}
+    .about-2 .heading h2 {
+    padding-top: 65px;
+}
+    .case-table .table-bordered th {
+    font-size: 20px;
+}
+.case-table .table-bordered td {
+    padding: 8px 0;
+    text-align: center;
+}
+    .schedule .case-table td:first-child {
+    padding-top: 20px;
+}
+    .schedule-hov {
+    width: 136px;
+    top: -60px;
+    left: -152px;
+    display: block;
+}
+    .sch-img img{
+        width: 100%;
+    }
+    .sch-txt a,
+    .sch-txt h5,
+    .sch-txt h4 {
+    font-size: 20px;
+}
+    .sch-txt a{
+        padding: 10px 0;
+    }
+    .sch-txt {
+    text-align: center;
+     padding-left: 0px; 
+}
+    .gap-row {
+    margin-top: 17px;
+}
+    #contact .content-text .c-text-menu1 ul li a {
+    font-size: 13px;
+}
+    .ser-inner h3 {
+    font-size: 27px;
+}
+.error {
+    padding-bottom: 100px;
+}
+    .heart-beat {
+    margin-left: -53px;
+            margin-top: -12%;
+}
+    .error-txt h3 {
+    padding-top: 40px;
+}
+ .news-inner h4 {
+    font-size: 27px;
+    line-height: 26px;
+        padding-bottom: 10px;
+}
+    .blog .news-txt {
+    margin-bottom: 40px;
+}
+    .details-img-sub ul li {
+    margin: 40px 53px 40px 0px;
+}
+    .detail-text-in h4, .detail-text h4 {
+    font-size: 28px;
+    line-height: 30px;
+}
+    .share:after {
+    width: 40px;
+    left: 109px;
+}
+    .tag:after {
+    width: 38px;
+    left: 51px;
+}
+    .modal.fade .modal-dialog {
+    top: 58%;
+}
+    .error-btm{
+        z-index: 999999;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .navbar-expand-md .navbar-nav .nav-link {
+    padding-right: 7px;
+    padding-left: 7px;
+}
+    .btn-bar a {
+    padding: 12px 25px;
+}
+    .dropdown-menu > li {
+    padding: 5px;
+}
+    .dropdown-menu > li > a {
+    font-size: 19px;
+        padding-left: 8px;
+}
+    .banner-area2 .title {
+    font-size: 70px;
+}
+    .banner-area2 .title span {
+    font-size: 36px;
+}
+    .slider{
+        height: 500px;
+    }
+    .banner-area2{
+    height: 450px;
+}
+    .section {
+    padding-top: 80px;
+}
+    .modal-dialog {
+        max-width: 700px !important;
+    }
+
+    .letter_inner p {
+        font-size: 15px;
+        padding: 0 10%;
+    }
+    #letter5 textarea,
+    #letter5 input {
+        width: 100%;
+    }
+
+    .about:after{
+    display: none!important;
+}
+    .navbar-brand img{
+        width: 90px;
+    }
+    .btn-bar a{
+        font-size: 20px;
+    }
+    .header-nav .navbar-nav .nav-link {
+    font-size: 18px;
+}
+    .navbar-expand-md .navbar-nav a {
+    margin: 0 0px;
+}
+    .banner2_text {
+    margin-top: 63%;
+}
+    .slide__content {
+    top: 34%;
+}
+    
+    .title {
+    font-size: 58px;
+    padding-bottom: 5px;
+        line-height: 50px;
+}
+    .title span {
+    font-size: 48px;
+}
+
+.symptom-txt h4 {
+    font-size: 30px;
+}
+    .what-do-txt h3 {
+    padding: 0px 0 8px 0;
+    font-size: 26px;
+}
+    .what-do img{
+        padding-top: 16px;
+    }
+    .doc-txt p {
+    font-size: 14px;
+}
+    .news-right .news-inner{
+        padding-top: 30px;
+    }
+    .medical-img {
+    right: -18px;
+    top: 110px;
+}
+    .about-2 .heading h2 {
+    padding-top: 34px;
+}
+    .about-inner p {
+    font-size: 15px;
+    line-height: 24px;
+    padding-bottom: 20px;
+}
+    .time-scroll {
+position: relative;
+overflow: auto;
+}
+    .schedule .case-table .table-bordered td, 
+    .case-table .table-bordered td{
+    text-align: center;
+            font-size: 14px!important;
+            vertical-align: middle;
+}
+    .schedule .case-table .table-bordered td{
+        padding: 10px 2px;
+    }
+    .schedule .case-table .table-bordered th {
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    padding: 20px 0;
+}
+    .slidprev{
+        right: -6%;
+    }
+    .slidNext {
+    left: -6%;
+}
+    .ser-inner {
+    padding: 28px;
+}
+    .test-img:after {
+    right: -29px;
+}
+    .test-txt h3 {
+    padding-top: 45px;
+}
+    .doc-border:after {
+    width: 88%;
+}
+    .ser-inner{
+        text-align: center;
+        display: inline-block;
+    }
+    .ser-doc{
+        padding-bottom: 60px;
+    }
+    .error-txt{
+        text-align: center;
+    }
+    .error {
+    padding-bottom: 100px;
+}
+    .heart-beat {
+            margin-top: -12%;
+}
+    .error-txt h3 {
+    padding-top: 40px;
+}
+    .heart-beat {
+    margin-left: -107px;
+}
+    .footer-bottom {
+    margin-top: 40px;
+}
+    .blog .news-txt {
+    margin-bottom: 40px;
+}
+    .details-img-sub ul li {
+    margin: 40px 34px 40px 0px;
+}
+    .detail-text-in h4, .detail-text h4 {
+    font-size: 26px;
+    line-height: 30px;
+        text-align: center;
+}
+    .share:after,
+    .tag:after {
+    display: none;
+}
+    .detail-text-img,
+    .detail-text-in p{
+        text-align: center;
+    }
+    .white-comment {
+    padding: 16px;
+}
+    .comment-border .padding-right-zero {
+    padding-right: 15px;
+}
+    .blogdetails_form{
+        padding-bottom: 40px;
+    }
+    .modal.fade .modal-dialog {
+    top: 58%;
+}
+    .error-btm{
+        z-index: 999999;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .section {
+    padding-top: 80px;
+}
+    .padding-left-zero,
+    .padding-right-zero {
+    padding-right: 15px;
+        padding-left: 15px;
+}
+    .navbar-brand img{
+        padding-left: 10px;
+    }
+    .dropdown-menu {
+    padding: 0px 0px;
+    background: #fff;
+    box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0);
+}
+    .navbar {
+    position: fixed;
+    background: #fff;
+}
+    .navbar .btn-bar a{
+        margin-left: 10px;
+    }
+    .full-screen{
+        height: 96vh;
+    }
+    .order-model .modal-dialog,
+    .modal-dialog {
+        max-width: 100% !important;
+    }
+
+    .modal-dialog {
+        margin: 0 auto;
+    }
+    .modal.fade .modal-dialog {
+    top: 105%;
+}
+   #letter5 textarea,
+    #letter5 input {
+        width: 100%;
+    }
+
+    .letter_inner p {
+        padding: 0 6%;
+    }
+
+    .navbar-toggler span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        border-radius: 1px;
+    }
+
+    .navbar-toggler span + span + span {
+        width: 10px;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 0px 0;
+    }
+  .header-nav .navbar-nav .nav-link {
+    font-size: 22px;
+}
+    .dropdown-menu > li {
+    padding: 4px;
+}
+    .navbar-nav .active,
+    .navbar-nav .nav-link:hover {
+        border-top: 4px solid transparent;
+    }
+
+    .navbar-toggler span + span {
+        margin-top: 4px;
+        width: 18px;
+    }
+
+    .header-nav .navbar-toggler span,
+    .navbar-toggler span {
+        background: #f05456;
+    }
+    .slider {
+     background: #fff; 
+        position: relative;
+}
+.slide__content{
+    position: absolute;
+   content: '';
+    top: 30%;
+    left: 50%!important;
+    transform: translateX(-50%);
+    width: 99%;
+    text-align: center;
+    left: 0;
+    z-index: 999;
+}
+    .slick-active .cont-1,
+    .slick-active .cont-2{
+        animation: fade 1.2s;
+    }
+    .title {
+    font-size: 35px;
+    letter-spacing: 0px;
+    line-height: 33px;
+    padding-bottom: 5px;
+}
+    .title span {
+    font-size: 35px;
+}
+    .banner_text p {
+    font-size: 15px;
+    line-height: 24px;
+    padding-bottom: 30px;
+}
+    .w-heading h2,
+    .heading h2 {
+    font-size: 30px;
+}
+    .Symptoms{
+        padding-bottom: 30px;
+    }
+    .what-do-txt{
+        text-align: center;
+    }
+    .doctors-inner {
+    margin-bottom: 0px;
+}
+    .doctors {
+    padding-bottom: 0px;
+}
+    .news-inner{
+        text-align: center;
+        padding-bottom: 50px;
+    }
+    .news-inner h3 {
+    font-size: 14px;
+        text-align: left;
+}
+    .news-right h3 {
+     padding-top: 10px; 
+}
+    .news-inner h4 {
+    font-size: 24px;
+    line-height: 26px;
+}
+    .contact{
+        text-align: center;
+    }
+    .footer-bottom p a{
+        font-size: 14px;
+    }
+    .footer-bottom p {
+    font-size: 13px;
+}
+    .banner2_text {
+    text-align: center;
+            margin-top: inherit;
+        left: 50%;
+        width: 98%;
+    transform: translate(-50%,60%);
+        
+}
+    .banner-area2 {
+    height: 550px;
+}
+    .banner-area2 .title {
+    font-size: 50px;
+        line-height: 40px;
+}
+    .banner-area2 .title span {
+    font-size: 32px;
+}
+   .about-2 .row,
+.about-2 .row{
+        -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+    }
+    .about-2 .heading h2 {
+    padding-top: 80px;
+}
+    .test-txt,
+    .about-2 ,
+    .about-inner p,
+    .about-2 .heading h2 {
+    text-align: center;
+}
+    .about-2 .heading h2:after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+    .schedule .case-table .table-bordered td,
+    .case-table .table-bordered td {
+    font-size: 14px!important;
+}
+    .case-table .table-bordered th {
+    font-size: 16px;
+    padding: 10px 0;
+        text-align: center;
+}
+    .schedule .case-table .table-bordered td, .case-table .table-bordered td {
+    font-size: 14px!important;
+    vertical-align: middle;
+       padding: 10px 1px;
+        text-align: center;
+}
+    .slidprev{
+       right: 0%;
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        background: #cd2c61;
+    }
+    .slidNext{
+        left: 0%;
+        color: #cd2c61;
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        background: #cd2c61;
+    }
+    .schedule-hov{
+        display: none!important;
+    }
+    .test-img:after{
+       left: 50%;
+       top: 100%;
+            transform: translate(-50%,-50%);
+    }
+    .doc-img img,
+    .test-img img{
+        width: 100%;
+    }
+    .test-txt ul {
+    padding-bottom: 20px;
+    display: inline-block;
+    text-align: center;
+}
+    .test-txt p{
+        padding-bottom: 30px;
+        padding-top: 25px;
+    }
+    .ser-doc{
+        padding-bottom: 50px;
+    }
+    .test-txt {
+    padding: 0 10px 0 10px;
+}
+    .bread-inner {
+    padding: 160px 0 80px;
+}
+    .ser-inner{
+        text-align: center;
+        display: inline-block;
+            padding: 27px;
+    }
+    .section {
+    padding-top: 65px;
+}
+    .ser-inner h3 {
+    font-size: 27px;
+}
+    .arraw {
+    top: -109px;
+}
+    .symptoms {
+    padding-bottom: 79px;
+}
+    .error-txt{
+        text-align: center;
+    }
+    .heart-beat {
+    margin-left: -137px;
+            margin-top: -4%;
+}
+    .error-txt h3 {
+        font-size: 145px;
+    line-height: 50px;
+    padding-top: 124px;
+}
+     .error {
+    z-index: 0;
+             padding-bottom: 100px;
+}
+    .heart {
+    z-index: -1;
+}
+    .error-btm h5 {
+    font-size: 116px;
+    margin-top: -20px;
+}
+    .blog .news-txt {
+    margin-bottom: 10px;
+}
+    .details-img-sub ul li h5 {
+    font-size: 14px;
+}
+    .details-img-sub ul li p {
+    font-size: 15px;
+}
+    .details-img-sub ul {
+       padding-top: 40px;
+    }
+    .details-img-sub ul li {
+    margin: 16px 4% 16px 0px;
+}
+    .detail-text-in h4{
+        font-size: 21px;
+         line-height: 28px;
+    }
+    .detail-text h4 {
+    font-size: 28px;
+    line-height: 28px;
+        padding-top: 38px;
+}
+    .blog-mess-link,
+    .white-comment,
+    .comments-title h4,
+    .detail-text-img,
+    .detail-text-in h4,
+    .detail-text-in p{
+        text-align: center;
+    }
+    .tag:after, .share:after {
+    width: 30%;
+}
+    .share{
+        margin-bottom: 40px;
+    }
+    .reply-comment {
+    margin-left: 0px;
+}
+    .comment-border .padding-right-zero{
+        padding: 15px;
+    }
+    .blog-mess-link{
+        padding-bottom: 30px;
+    }
+    #loading-center img {
+        height: 260px;;
+}
+    .table-wrapper-scroll-y {
+    overflow: auto;
+        padding-bottom: 0;
+        margin-bottom: 30px;
+}
+    .number-ser h5 {
+    right: -31px;
+}
+    .cases,
+    .schedule {
+        display: none;
+    }
+    .news .btn-bar{
+        margin-top: 0;
+    }
+     .gap-row {
+     margin-top: 0px; 
+         padding-top: 60px;
+}
+    .about {
+    padding-bottom: 0px;
+}
+     .about-inner,
+    .p-border {
+    padding-bottom: 30px;
+}
+    .comments-title h4 {
+    margin-top: 30px;
+}
+    .blog-detail {
+    padding-bottom: 70px;
+}
+    .blog-detail .btn-bar {
+    margin-top: 0px;
+}
+
+  
+}
+@media only screen and (max-width: 500px){
+    .error {
+        overflow-x: hidden;
+    }
+        .error-txt h3 {
+        font-size: 145px;
+    line-height: 50px;
+    padding-top: 124px;
+}
+    .heart {
+    position: absolute;
+    left: 50%;
+    content: '';
+    transform: translateX(-50%);
+}
+    .heart-beat {
+    margin-left: inherit;
+}
+    .error-btm h5 {
+    font-size: 116px;
+    margin-top: 120px;
+}
+    .details-img-sub ul li {
+    display: none;
+}
+    .detail-text h4 {
+        padding-top: 0px;
+}
+    .tag,
+    .share {
+    display: none;
+}
+    .blog-detail-inner {
+    padding-bottom: 0px;
+}
+    .media {
+    display: inline-block;
+}
+    .blog_media {
+    padding-right: 15px;
+}
+    .media-left{
+        text-align: center;
+        padding-bottom: 30px;
+    }
+    .news-img img{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .banner2_text {
+    transform: translate(-50%,48%);
+}
+
+    .navbar-brand img{
+        width: 100px;
+        padding-left: 15px;
+    }
+.heart-beat {
+    margin-left: inherit;
+    width: 303px;
+    margin-top: 16%;
+}
+    .error-btm p {
+    font-size: 14px;
+    word-spacing: 0;
+    padding: 37px 0 20px;
+}
+    .detail-text h4 {
+    font-size: 24px;
+}
+}

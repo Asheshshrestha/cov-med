@@ -1,0 +1,45 @@
+<header>
+        <nav id="nav-part" class="navbar header-nav sticky-top navbar-expand-md">
+            <div class="container p-0">
+                <a class="navbar-brand" href="#"><img src="" class="img-fluid" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item"><a class="nav-link active" href="#banner">Home<span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About Corona </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#symptoms">Symptoms</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#prevention">Prevention</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#doctors">Doctors</a></li>
+                       
+                    </ul>
+                    <!-- Example split danger button -->
+                    {% if request.user.is_authenticated %}
+                    <div class="dropdown">
+                        <button class="dropbtn"><i class="far fa-user"></i><span class="ml-2">{{ request.user.username}}</span></button>
+                        <div class="dropdown-content">
+                          {% if request.user.is_staff %}
+                          <a href="{% url 'index' %}" class="" ><i class="fas fa-columns"></i><span class="ml-2">Dashboard</span></a>
+                          {% endif %}
+                          
+                          <a href="{% url 'change_password_front' %}"><i class="fas fa-key"></i><span class="ml-2">Change Password</span></a>
+                          <a href="{% url 'logout' %}"><i class="fas fa-user-edit"></i><span class="ml-2">Update Profile</span></a>
+                          <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i><span class="ml-2">Logout</span></a>
+                        </div>
+                      </div>
+                      {% else %}
+                      <div class="btn-bar">
+                      <a href="{% url 'signup' %}" class="" >Sign Up</a>
+                        <a href="{% url 'login' %}" class="" >Login</a>
+                      </div>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </nav>
+    </header>

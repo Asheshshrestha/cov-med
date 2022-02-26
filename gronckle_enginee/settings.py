@@ -133,6 +133,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -145,8 +146,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
-USER_LOGIN_REDIRECT_URL = '/demo/home/'
+USER_LOGIN_REDIRECT_URL = '/'
 STAFF_LOGIN_REDIRECT_URL = '/c-admin/home/'
+
+
+
 
 
 EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
@@ -158,7 +162,7 @@ EMAIL_HOST_PASSWORD= os.getenv("PASSWORD")
 
 SITE_ID = 1
 
-
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 MEDIA_URL ='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')

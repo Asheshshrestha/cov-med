@@ -1,0 +1,2236 @@
+/* 
+------------------
+Template Name: Quarantine - Medical, Doctor and Hospital Theme
+Author: Ingenious_team
+Author Email: ingeniousteam786@gmail.com
+Version: 1
+------------------
+----------------
+Table of Content
+----------------
+Home version 01:
+        1. Navbar Part 
+        2. banner part
+        3. About CoronaVirus part
+        4. Corona Virus Case part
+        5. CoronaVirus Symptoms part
+        6. Corona Virus Prevention part 
+        7. Our Doctors part
+        8. Latest Updates part
+        9. Contact part
+
+Home version 02:
+        10. Get Appointment Newsletter Part 
+        12. Navbar Part 
+        13. banner part
+        14. About us part
+        15. Our Services part
+        16. Testimonial part 
+        17. Our Doctors part
+        18. Latest Updates part
+        19. Contact part
+
+Other pages:
+        20. our service page
+        21. Blog Style-1 page
+        22. Blog Style-1 page
+        23. Blog Details page
+        24. Error page
+      
+    
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Teko:300,400,500,600,700');
+
+/*============Common CSS Start===============*/
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+em,
+ol,
+ul,
+li,
+a {
+    margin: 0;
+}
+
+button:focus {
+    outline: 5px auto transparent;
+}
+
+img {
+    vertical-align: middle;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+ul,
+li,
+ol {
+    list-style: none;
+}
+
+.m-t-30 {
+    margin-top: 30px;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.heading h2 {
+    font-size: 40px;
+    line-height: 24px;
+    color: #ef3e78;
+    font-family: 'Teko', sans-serif;
+    font-weight: 500;
+    text-transform: capitalize;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.heading h2:after {
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 240px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    background: linear-gradient(to right, #ef3e78 0%, transparent 100%);
+    z-index: 99;
+}
+
+.w-heading h2 {
+    font-size: 40px;
+    line-height: 24px;
+    font-family: 'Teko', sans-serif;
+    color: #fff;
+    font-weight: 500;
+    text-transform: capitalize;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.w-heading h2:after {
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 240px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    background: linear-gradient(to right, #fff 0%, transparent 100%);
+    z-index: 99;
+}
+
+.section {
+    padding-top: 100px;
+}
+
+::selection {
+    background: #ef3e78;
+    text-shadow: none;
+    color: #fff;
+}
+
+.padding-left-zero {
+    padding-left: 0;
+}
+
+.padding-right-zero {
+    padding-right: 0;
+}
+
+.padding-zero {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/*============Common CSS End===============*/
+
+
+/*
+==========================================
+    Preloader
+==========================================
+*/
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #faf9f9;
+    z-index: 999999;
+    height: 100%;
+}
+
+#loading-center {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#loading-center img {
+    text-align: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    z-index: 99;
+    margin: 0 auto;
+}
+
+
+/*================================================
+              BACK BUTTON PART START
+=================================================*/
+
+#back-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: #fff;
+    width: 60px;
+    line-height: 60px;
+    height: 60px;
+    display: block;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    background: #cd2c61;
+    box-shadow: 0px 5px 15px 3px rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 999;
+    animation: jump 3s linear infinite;
+}
+
+#back-top-btn i {
+    margin: 0;
+    position: relative;
+    left: 24px;
+    top: 2px;
+    font-size: 20px;
+    -webkit-transition: all ease 0.6s;
+    -moz-transition: all ease 0.6s;
+    -o-transition: all ease 0.6s;
+    transition: all ease 0.6s;
+}
+
+
+/* =========== Jump ========== */
+
+@keyframes jump {
+    20% {
+        margin-top: 10px;
+    }
+    30% {
+        margin-bottom: 30px;
+    }
+    60% {
+        margin-bottom: 0px;
+    }
+    100% {
+        margin-top: 0px;
+    }
+}
+
+
+/*================================================
+              BACK BUTTON PART END
+=================================================*/
+
+
+/*============NewsLetter Modal Part CSS Start===============*/
+
+
+/* ============================================
+         Model 
+=============================================*/
+
+.model-visi {
+    visibility: hidden!important;
+}
+
+.modal-content {
+    border-radius: 0px;
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+
+.modal-header i {
+    position: absolute;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-dialog {
+    margin-top: 100px;
+    max-width: 694px !important;
+    z-index: 99999;
+}
+
+.order-model .modal-dialog {
+    max-width: 894px !important;
+}
+
+.download-close {
+    float: right;
+    background: #ef3e78;
+    border-radius: 45px;
+    border: 1px solid transparent;
+    width: 46px;
+    height: 46px;
+    z-index: 99999;
+    position: absolute;
+    right: -6px;
+    top: -8px;
+    padding: 2px 0;
+}
+
+.download-close span {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 45px;
+    padding: 5px 16px;
+}
+
+#letter5 {
+    text-align: center;
+}
+
+.letter_inner img {
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.letter_inner .heading {
+    margin-bottom: 0px;
+}
+
+.order-model .letter_inner img {
+    margin-bottom: 30px;
+    margin-top: 0px;
+}
+
+#letter5 textarea {
+    border: 0.5px solid #ccc;
+    color: #999;
+    width: 790px;
+    height: 160px;
+    padding-left: 20px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+#letter6 .tab-content,
+#letter5 .tab-content {
+    padding: 0 50px;
+}
+
+#letter5 select,
+#letter5 input {
+    margin-bottom: 15px;
+    position: relative;
+    color: #ef3e78;
+    resize: none;
+    font-weight: 300;
+    border: 0.5px solid #ccc;
+    font-size: 14px;
+    font-family: "Open Sens", sans-serif;
+    height: 40px;
+    background: transparent;
+    width: 100%;
+    padding: 0 20px;
+    border-radius: 3px;
+    z-index: 9;
+    box-shadow: none;
+}
+
+#letter5 input:focus {
+    outline: none !important;
+    border: 0.5px solid #ef3e78;
+    color: #ef3e78;
+}
+
+#letter5 textarea::placeholder,
+#letter5 input::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+#letter5 .form-btn {
+    margin-top: 0;
+}
+
+.form-btn button {
+    border-radius: 0;
+    margin-bottom: 50px;
+    margin-top: 10px;
+}
+
+.modal.fade .modal-dialog {
+    top: 48%;
+    transition: -webkit-transform 0.4s ease;
+    transition: transform 0.4s ease;
+    transition: transform 0.4s ease, -webkit-transform 0.4s ease;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+}
+
+.order-model label {
+    font-size: 14px;
+    font-family: "Open Sens", sans-serif;
+    color: #999;
+    line-height: 24px;
+    position: absolute;
+    left: 34px;
+    top: -12px;
+    background: #fff;
+    padding: 0 8px;
+    z-index: 99;
+}
+
+.wrap {
+    overflow: hidden;
+    position: relative;
+}
+
+.wrap:after {
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #999;
+    position: absolute;
+    right: 12px;
+    top: 9px;
+    z-index: 1;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.datepicker {
+    position: relative;
+}
+
+.datepicker:after {
+    content: "\f073";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #999;
+    position: absolute;
+    right: 12px;
+    top: 9px;
+    z-index: 1;
+}
+
+
+/*=============================
+NewsLetter Modal Part CSS End
+==============================*/
+
+
+/*===============Navbar Part CSS Start===============*/
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    background: #fff;
+    margin: 0!important;
+    padding: 0px 0 9px!important;
+    z-index: 111;
+    transition: all ease .4s;
+    -webkit-transition: all ease .4s;
+    -moz-transition: all ease .4s;
+    -o-transition: all ease .4s;
+}
+
+.custom_nav {
+    position: relative;
+}
+
+.sticky {
+    background: #F5F5F5;
+    box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+    -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+    -moz-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+    -o-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+}
+
+.sticky.navbar {
+    padding: 0px 0 10px;
+    position: fixed;
+    animation: sticky .7s;
+    -webkit-animation: sticky .7s;
+    -moz-animation: sticky .7s;
+    -o-animation: sticky .7s;
+    z-index: 1000;
+}
+
+@keyframes sticky {
+    from {
+        top: -100px;
+    }
+    to {
+        top: 0;
+    }
+}
+
+.header-nav .navbar-nav .nav-link {
+    font-family: 'Teko', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #222;
+    text-transform: capitalize;
+    position: relative;
+    z-index: 9;
+    transition: all linear .5s;
+    -webkit-transition: all linear .5s;
+    -moz-transition: all linear .5s;
+    -o-transition: all linear .5s;
+}
+
+.navbar-nav .nav-link {
+    transition: 0.3s ease;
+    border-top: 4px solid transparent;
+    padding: 30px 0;
+}
+
+.navbar-nav .active,
+.navbar-nav .nav-link:hover {
+    border-top: 4px solid #ef3e78;
+    color: #ef3e78!important;
+}
+
+.navbar-expand-md .navbar-nav a {
+    margin: 0 8px;
+}
+
+.navbar-brand {
+    margin-top: 6px;
+}
+
+.btn-bar a {
+    margin-top: 6px;
+    position: relative;
+    display: inline-block;
+    font-size: 24px;
+    vertical-align: top;
+    text-align: center;
+    line-height: 28px;
+    color: #ffffff;
+    font-weight: 400;
+    font-family: 'Teko', sans-serif;
+    padding: 12px 30px;
+    border-radius: 5px;
+    height: 48px;
+    -webkit-transition: all linear .7s;
+    -moz-transition: all linear .7s;
+    -o-transition: all linear .7s;
+    transition: all linear .7s;
+    background: #ef3e78;
+}
+
+.btn-bar button {
+    margin-top: 6px;
+    position: relative;
+    display: inline-block;
+    font-size: 24px;
+    vertical-align: top;
+    text-align: center;
+    line-height: 28px;
+    color: #ffffff;
+    font-weight: 400;
+    font-family: 'Teko', sans-serif;
+    padding: 12px 30px;
+    border-radius: 5px;
+    height: 48px;
+    -webkit-transition: all linear .7s;
+    -moz-transition: all linear .7s;
+    -o-transition: all linear .7s;
+    transition: all linear .7s;
+    background: #ef3e78;
+}
+
+.btn-bar a:hover {
+    background: #ffffff;
+    color: #ef3e78;
+    box-shadow: 0px 12px 40px 4px rgba(240, 84, 86, .3);
+    -webkit-box-shadow: 0px 12px 40px 4px rgba(240, 84, 86, .3);
+    -moz-box-shadow: 0px 12px 40px 4px rgba(240, 84, 86, .3);
+    -o-box-shadow: 0px 12px 40px 4px rgba(240, 84, 86, .3);
+}
+
+.navbar-nav .m-nav {
+    margin-left: 60px;
+}
+
+
+/* Dropdown Button */
+
+.dropbtn {
+    background-color: #ef3e78;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+/* Change color of dropdown links on hover */
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+
+/* Show the dropdown menu on hover */
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+
+.dropdown:hover .dropbtn {
+    background-color: #c70358;
+}
+
+
+/* dropdown menu css */
+
+.dropdown-menu {
+    padding: 14px 0px;
+    width: 230px;
+    top: 64px;
+    min-width: 210px;
+    box-shadow: 0 2px 3px 0px rgba(0, 0, 0, .2);
+    border-radius: 0;
+    background: #F5F5F5;
+    border: none;
+    -webkit-transition: all ease 0.4s;
+    -moz-transition: all ease 0.4s;
+    -ms-transition: all ease 0.4s;
+    -o-transition: all ease 0.4s;
+}
+
+.nav .open>a,
+.nav .open>a:focus,
+.nav .open>a:hover {
+    background: none;
+}
+
+.dropdown-menu>li {
+    padding: 10px 10px;
+}
+
+.dropdown-menu>li>a {
+    font-size: 22px;
+    position: relative;
+    line-height: 24px;
+    font-weight: 400;
+    font-family: 'Teko', sans-serif;
+    color: #222;
+}
+
+.dropdown-menu>li>a:focus,
+.dropdown-menu>li:hover a {
+    background: none;
+    color: #ef3e78 !important;
+    transition: all ease .4s;
+    -webkit-transition: all ease 0.4s;
+    -moz-transition: all ease 0.4s;
+    -ms-transition: all ease 0.4s;
+    -o-transition: all ease 0.4s;
+}
+
+.header-nav .navbar-nav li .active span,
+.header-nav .navbar-nav li a:hover span,
+.header-nav .navbar-nav li a:focus span {
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+
+.custom_nav ul>li>a:focus:after,
+.custom_nav ul>li.active>a:after,
+.custom_nav ul>li:hover>a:after {
+    opacity: 1;
+}
+
+@media(min-width:768px) {
+    .dropdown-menu {
+        display: block;
+        visibility: hidden;
+        opacity: 0;
+        top: 110%;
+    }
+    .header-nav ul>li:hover>.dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        top: 106%;
+    }
+    .navbar-right .dropdown-menu {
+        right: 0;
+        left: 2px;
+        width: 240px;
+    }
+}
+
+
+/* =============Navbar Part CSS End============= */
+
+
+/* ============================= 
+       2. Banner Css 
+======================================= */
+
+.banner-area2,
+.slider {
+    background: #fbfbfb;
+}
+
+.banner-area2 {
+    position: relative;
+    height: 705px;
+}
+
+.banner-area {
+    position: relative;
+}
+
+.slide__content {
+    position: absolute;
+    content: '';
+    top: 34%;
+    width: 100%;
+    left: 0;
+    z-index: 999;
+}
+
+.banner2_text {
+    position: absolute;
+    content: '';
+    margin-top: 80%;
+    transform: translateY(-50%);
+}
+
+.banner2_text h2,
+.banner_text h2 {
+    font-size: 28px;
+    line-height: 24px;
+    font-weight: 300;
+    color: #444;
+    font-family: 'Teko', sans-serif;
+}
+
+.title {
+    font-size: 74px;
+    letter-spacing: 1px;
+    line-height: 65px;
+    font-weight: 600;
+    color: #ef3e78;
+    font-family: 'Teko', sans-serif;
+    z-index: 99;
+    padding-bottom: 10px;
+}
+
+.title span {
+    font-size: 58px;
+    color: #222;
+    display: block;
+    text-transform: uppercase;
+}
+
+.banner2_text p,
+.banner_text p {
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: 400;
+    color: #444;
+    font-family: 'Open Sens', sans-serif;
+    padding-bottom: 10px;
+}
+
+.slide__img img {
+    padding-top: 120px;
+}
+
+.slick-active .cont-1 {
+    animation: fadeInRight 1.5s;
+    animation-timing-function: ease-in-out;
+}
+
+.slick-active .img-1 {
+    animation: fadeInDown 1.5s;
+    animation-timing-function: ease-in-out;
+}
+
+.slick-active .cont-2 {
+    animation: fadeInUp 1.2s;
+    animation-timing-function: ease-in-out;
+}
+
+
+/* home-2 */
+
+.banner-area2 .title {
+    font-size: 96px;
+    padding-top: 12px;
+}
+
+.banner-area2 .title span {
+    font-size: 49px;
+}
+
+.medical-img {
+    position: absolute;
+    right: -60px;
+    top: 115px;
+}
+
+
+/*============================= 
+     About Part CSS Start-home-1 Start
+=================================*/
+
+.about {
+    padding-bottom: 100px;
+    position: relative;
+}
+
+.about:after {
+    content: '';
+    position: absolute;
+    background: url(../images/about-bg.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    z-index: -1;
+}
+
+.about-inner p {
+    font-family: 'Open Sens', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: #444;
+    padding-bottom: 30px;
+    margin: 0;
+}
+
+.about-2 .heading h2 {
+    padding-top: 130px;
+}
+
+.about-2 .heading h2:after {
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 130px;
+    left: 0%;
+    bottom: 0;
+    transform: translateX(0%);
+    background: linear-gradient(to right, #ef3e78 0%, transparent 100%);
+    z-index: 99;
+}
+
+
+/*============================= 
+     About Part CSS Start-home-1 End
+=================================*/
+
+
+/*====================================
+    Corona Virus Case Part CSS Start
+=======================================*/
+
+.arraw {
+    position: absolute;
+    top: -130px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.arraw i {
+    background: linear-gradient(to bottom, #fff 0%, #ddd 100%);
+    font-size: 24px;
+    color: #f03e78;
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+    line-height: 80px;
+}
+
+.arraw i:hover {
+    background: linear-gradient(to top, #fff 0%, #ddd 100%);
+}
+
+.cases {
+    background: linear-gradient(to bottom, #cc2c61 0%, #d13166 100%);
+    padding-bottom: 60px;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 292px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+.case-table th:first-child,
+.case-table td:first-child {
+    text-align: left;
+}
+
+.case-table th,
+.case-table td {
+    text-align: center;
+}
+
+.case-table .table-bordered td,
+.case-table .table-bordered th {
+    border: 1px solid #b32150;
+    color: #fff;
+}
+
+.case-table .table-bordered th {
+    font-size: 22px;
+    line-height: 24px;
+    font-weight: 600;
+    font-family: 'Teko', sans-serif;
+}
+
+.schedule .case-table .table-bordered td,
+.case-table .table-bordered td {
+    font-size: 16px!important;
+    line-height: 24px;
+    font-weight: 400;
+    font-family: 'Open Sens', sans-serif;
+    position: relative;
+}
+
+.cases .btn-bar {
+    margin-top: 30px;
+}
+
+.my-custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.my-custom-scrollbar::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.my-custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #a61f4b;
+    outline: 5px solid red;
+}
+
+
+/*====================================
+    Corona Virus Case Part CSS End
+=======================================*/
+
+
+/*====================================
+    Corona Virus symptom Part CSS Start
+=======================================*/
+
+.symptoms {
+    padding-bottom: 100px;
+}
+
+.symptoms-inner {
+    padding-bottom: 36px;
+}
+
+.symptom-txt h4 {
+    font-size: 36px;
+    line-height: 24px;
+    font-weight: 600;
+    color: #ef3e78;
+    font-family: 'Teko', sans-serif;
+    padding-top: 30px;
+    text-transform: capitalize;
+}
+
+
+/*====================================
+    Corona Virus symptom Part CSS End
+=======================================*/
+
+
+/*====================================
+    Corona Virus Prevention Part CSS Start
+=======================================*/
+
+.prevention {
+    background: linear-gradient(to bottom, #cc2c61 0%, #d13166 100%);
+    padding-bottom: 60px;
+    position: relative;
+}
+
+.what-do {
+    margin-top: 30px;
+}
+
+.what-do-txt {
+    color: #fff;
+    padding-top: 20px;
+}
+
+.what-do-txt h3 {
+    padding: 8px 0 10px 0;
+    font-size: 32px;
+    line-height: 24px;
+    font-weight: 400;
+    font-family: 'Teko', sans-serif;
+}
+
+.what-do-txt p {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    font-family: 'Open Sens', sans-serif;
+}
+
+.p-border {
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #ef3e78;
+}
+
+
+/*====================================
+    Corona Virus Prevention Part CSS End
+=======================================*/
+
+
+/*====================================
+   Connect Doctors Part CSS Start
+=======================================*/
+
+.doctors-inner {
+    padding-bottom: 25px;
+}
+
+.doctors-inner,
+.doctors {
+    position: relative;
+}
+
+.doctors:after {
+    content: '';
+    position: absolute;
+    background: url(../images/doctor-bg.png) no-repeat;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    top: 0;
+}
+
+.doc-txt {
+    background: #fff;
+    padding: 16px 0 10px;
+    position: absolute;
+    bottom: 35px;
+    width: 93%;
+    border-radius: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    box-shadow: 0px 12px 40px 4px rgba(0, 0, 0, .1);
+    -webkit-box-shadow: 0px 12px 40px 4px rgba(0, 0, 0, .1);
+    -moz-box-shadow: 0px 12px 40px 4px rgba(0, 0, 0, .1);
+    -o-box-shadow: 0px 12px 40px 4px rgba(0, 0, 0, .1);
+}
+
+.doc-txt h4 {
+    color: #222;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 600;
+    font-family: 'Teko', sans-serif;
+}
+
+.doc-txt p {
+    font-size: 16px;
+    line-height: 24px;
+    color: #444;
+    font-weight: 400;
+    font-family: 'Open Sens', sans-serif;
+}
+
+.doctor-slick,
+.doctors-inner {
+    z-index: 99;
+}
+
+.doc-border {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.doc-border:after {
+    position: absolute;
+    content: '';
+    height: 2px;
+    width: 220px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    background: linear-gradient(to right, #ddd 0%, transparent 100%);
+    z-index: 99;
+}
+
+.doctors-inner:hover .doc-txt h4 {
+    color: #ef3e78;
+    transition: all ease .5s;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    -ms-transition: all ease 0.5s;
+    -o-transition: all ease 0.5s;
+}
+
+.doctors-inner:hover .doc-border:after {
+    background: linear-gradient(to right, #ef3e78 0%, transparent 100%);
+    transition: all ease-in .9s;
+    -webkit-transition: all ease-in 0.9s;
+    -moz-transition: all ease-in 0.9s;
+    -ms-transition: all ease-in 0.9s;
+    -o-transition: all ease-in 0.9s;
+}
+
+.doc-img {
+    transform: scale(1);
+    margin-bottom: 88px;
+}
+
+.doc-img:hover {
+    transform: scale(1.06);
+    transition: all ease 0.8s;
+    -webkit-transition: all ease 0.8s;
+    -moz-transition: all ease 0.8s;
+    -ms-transition: all ease 0.8s;
+    -o-transition: all ease 0.8s;
+}
+
+.service-doc {
+    padding-bottom: 160px;
+}
+
+.ser-doc {
+    padding-bottom: 60px;
+}
+
+
+/*====================================
+   Connect Doctors Part CSS End
+=======================================*/
+
+
+/*====================================
+   Latest Updates Part CSS Start
+=======================================*/
+
+.news {
+    padding-bottom: 80px;
+    padding-top: 80px;
+}
+
+.news-inner {
+    padding-bottom: 25px;
+}
+
+.news-inner h3 {
+    color: #999;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    padding: 13px 0;
+    text-transform: capitalize;
+    font-family: 'Open Sens', sans-serif;
+}
+
+.news-inner h4 {
+    color: #222;
+    font-size: 29px;
+    line-height: 34px;
+    font-weight: 500;
+    font-family: 'Teko', sans-serif;
+}
+
+.news-inner p {
+    color: #444;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    font-family: 'Open Sens', sans-serif;
+}
+
+.news-inner a {
+    color: #222;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 600;
+    font-family: 'Teko', sans-serif;
+    padding-right: 15px;
+}
+
+.news-inner a i {
+    font-size: 18px;
+    padding-top: 15px;
+}
+
+.news-inner h3 span {
+    float: right;
+}
+
+.news-txt:hover h4,
+.news-txt:hover a {
+    color: #ef3e78;
+    transition: all ease .5s;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    -ms-transition: all ease 0.5s;
+    -o-transition: all ease 0.5s;
+}
+
+.news-right h3 {
+    padding-top: 0;
+}
+
+.news-right .col-md-7,
+.news-right .col-md-5 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.gap-row {
+    margin-top: 30px;
+    border-top: 1px solid #ddd;
+    padding-top: 30px;
+}
+
+.news .btn-bar {
+    margin-top: 30px;
+}
+
+.blog .news-txt {
+    margin-bottom: 70px;
+}
+
+.news-img {
+    text-align: center;
+}
+
+
+/*====================================
+   Latest Updates Part CSS End
+=======================================*/
+
+
+/*==============Contact Part CSS Start=============*/
+
+#contact {
+    background: linear-gradient(to top, #d8376d 0%, #d7376c 100%);
+    background-position: center !important;
+    background-size: cover !important;
+    z-index: 1;
+}
+
+#contact .cont-logo {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+#contact .cont-center h3 {
+    color: #fff;
+    font-family: 'Teko', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    padding-top: 50px;
+    padding-bottom: 26px;
+}
+
+#contact .content-text .cont-txt .cont-gap {
+    padding-bottom: 20px;
+}
+
+#contact .content-text .cont-txt p {
+    color: #fff;
+    line-height: 24px;
+    font-family: 'Open Sens', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+#contact .content-text .cont-txt ul li {
+    display: inline-block;
+    margin-top: 33px;
+    margin-bottom: 23px;
+    margin-right: 5px;
+}
+
+#contact .content-text .cont-txt ul li a i {
+    color: #ef3e78;
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+    line-height: 45px;
+    text-align: center;
+    background: #fff;
+    font-size: 16px;
+    box-shadow: 0px 12px 40px 4px rgba(0, 0, 0, .1);
+    transition: all linear .5s;
+    -webkit-transition: all linear .5s;
+    -moz-transition: all linear .5s;
+    -ms-transition: all linear .5s;
+    -o-transition: all linear .5s;
+}
+
+#contact .content-text .cont-txt ul li a i:hover {
+    color: #fff;
+    background: #ef3e78;
+}
+
+#contact .content-text .c-text-menu1 ul li a {
+    color: #fff;
+    font-family: 'Open Sens', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    padding-bottom: 20px;
+    display: block;
+    transition: all linear .5s;
+    -webkit-transition: all linear .5s;
+    -moz-transition: all linear .5s;
+    -ms-transition: all linear .5s;
+    -o-transition: all linear .5s;
+}
+
+#contact .content-text .c-text-menu1 ul li a:hover {
+    padding-left: 5px;
+}
+
+#contact .content-text .c-text-location ul li {
+    padding-bottom: 25px;
+    text-align: center;
+    display: inline-block;
+}
+
+#contact .content-text .c-text-location ul li a i {
+    color: #ef3e78;
+    width: 46px;
+    height: 46px;
+    border-radius: 5px;
+    line-height: 46px;
+    text-align: center;
+    background: #fff;
+    font-size: 16px;
+    transition: all linear .5s;
+    -webkit-transition: all linear .5s;
+    -moz-transition: all linear .5s;
+    -ms-transition: all linear .5s;
+    -o-transition: all linear .5s;
+}
+
+#contact .content-text .c-text-location ul li a i:hover {
+    color: white;
+    background: #ef3e78;
+}
+
+#contact .content-text .c-text-location .address p {
+    color: #fff;
+    font-family: 'Open Sens', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    padding-bottom: 23px;
+}
+
+.footer-bottom {
+    position: relative;
+    padding: 14px 0;
+    padding-top: 15px;
+}
+
+.footer-bottom:after {
+    position: absolute;
+    content: '';
+    height: 1px;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    background: linear-gradient(to right, #fff 0%, transparent 100%);
+    z-index: 99;
+}
+
+.footer-bottom p a,
+.footer-bottom p {
+    color: #fff;
+    font-family: 'Open Sens', sans-serif;
+    font-weight: 400;
+    line-height: 24px;
+    font-size: 16px;
+}
+
+
+/*==============Contact Part CSS End=============*/
+
+
+/*==============Time Schedule Part CSS Start=============*/
+
+.schedule {
+    background: linear-gradient(to bottom, #cc2c61 0%, #d13166 100%);
+    padding-bottom: 60px;
+    overflow-x: hidden;
+}
+
+.schedule-hov {
+    background: #fff;
+    width: 280px;
+    position: absolute;
+    top: -20px;
+    left: -286px;
+    z-index: 9;
+}
+
+.schedule-hov {
+    display: flex;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.sch-txt {
+    text-align: left;
+    padding-left: 16px;
+}
+
+.sch-txt h4 {
+    color: #222;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 600;
+    margin-bottom: 0;
+    padding-top: 15px;
+    font-family: 'Teko', sans-serif;
+}
+
+.sch-txt h5 {
+    color: #444;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 400;
+    font-family: 'Teko', sans-serif;
+    position: relative;
+    padding-bottom: 13px;
+    margin-bottom: 8px;
+}
+
+.sch-txt p {
+    font-size: 16px;
+    line-height: 24px;
+    color: #444;
+    font-weight: 400;
+    font-family: 'Open Sens', sans-serif;
+}
+
+.sch-txt a {
+    color: #ef3e78;
+    font-size: 22px;
+    line-height: 24px;
+    font-weight: 600;
+    font-family: 'Teko', sans-serif;
+}
+
+.sch-txt a i {
+    font-size: 14px;
+    padding-left: 5px;
+}
+
+.sch-txt h5:after {
+    position: absolute;
+    content: '';
+    height: 1px;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    background: linear-gradient(to right, #999 0%, transparent 100%);
+    z-index: 99;
+}
+
+.which-doc {
+    visibility: hidden;
+    display: none;
+}
+
+.inner-table tr td:hover .which-doc {
+    visibility: visible;
+    display: block;
+}
+
+.schedule .my-custom-scrollbar {
+    height: 392px;
+}
+
+.schedule.case-table th:first-child,
+.schedule .case-table td:first-child {
+    text-align: center;
+    padding-top: 25px;
+}
+
+.inner-table td,
+.inner-table th {
+    border: none!important;
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+    padding-right: 0!important;
+    font-size: 14px!important;
+}
+
+.inner-table {
+    text-align: center;
+    display: initial;
+}
+
+.case-content {
+    padding-bottom: 25px;
+}
+
+
+/*==============Time Schedule Part CSS End==============*/
+
+
+/*====================================
+       Our Services Part CSS Start
+=======================================*/
+
+.services {
+    padding-bottom: 100px;
+}
+
+.services-inner .heading h2:after {
+    width: 170px;
+}
+
+.ser-inner {
+    padding: 30px;
+    box-shadow: 0px 12px 60px 4px rgba(0, 0, 0, .1);
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+.ser-inner [class^="flaticon-"]:before,
+.ser-inner [class*=" flaticon-"]:before,
+.ser-inner [class^="flaticon-"]:after,
+.ser-inner [class*=" flaticon-"]:after {
+    font-family: Flaticon;
+    font-size: 65px;
+    color: #ef3e78;
+    margin-left: 0px;
+}
+
+.ser-inner h3 {
+    color: #ef3e78;
+    font-size: 32px;
+    line-height: 24px;
+    font-weight: 600;
+    padding: 6px 0;
+    font-family: 'Teko', sans-serif;
+}
+
+.ser-inner p {
+    font-size: 16px;
+    line-height: 24px;
+    color: #444;
+    font-weight: 400;
+    font-family: 'Open Sens', sans-serif;
+}
+
+.ser-inner:hover {
+    background: #ef3e78;
+    transition: all linear .5s;
+    -webkit-transition: all linear .5s;
+    -moz-transition: all linear .5s;
+    -ms-transition: all linear .5s;
+    -o-transition: all linear .5s;
+}
+
+.ser-inner:hover [class^="flaticon-"]:before,
+.ser-inner:hover [class*=" flaticon-"]:before,
+.ser-inner:hover [class^="flaticon-"]:after,
+.ser-inner:hover [class*=" flaticon-"]:after,
+.ser-inner:hover h3,
+.ser-inner:hover p {
+    color: #fff;
+    transition: all linear .5s;
+    -webkit-transition: all linear .5s;
+    -moz-transition: all linear .5s;
+    -ms-transition: all linear .5s;
+    -o-transition: all linear .5s;
+}
+
+.number-ser {
+    position: relative;
+}
+
+.number-ser h5 {
+    position: absolute;
+    font-size: 120px;
+    line-height: 24px;
+    font-weight: 600;
+    font-family: 'Teko', sans-serif;
+    color: #f5f5f5;
+    top: 0;
+    letter-spacing: -1px;
+    right: -45px;
+}
+
+.ser-inner:hover h5 {
+    color: #dc326b;
+    transition: all linear .5s;
+    -webkit-transition: all linear .5s;
+    -moz-transition: all linear .5s;
+    -ms-transition: all linear .5s;
+    -o-transition: all linear .5s;
+}
+
+.services .btn-bar {
+    margin-top: 40px;
+}
+
+
+/*==============================================
+                Testimonial CSS Start
+        ===============================================*/
+
+.testimonial {
+    background: linear-gradient(to bottom, #cc2c61 0%, #d13166 100%);
+    padding-bottom: 80px;
+}
+
+.test-inner {
+    background: #fff;
+    padding: 3px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.test-txt {
+    padding: 0 36px 0 10px;
+}
+
+.test-txt h3 {
+    font-size: 32px;
+    line-height: 30px;
+    font-weight: 600;
+    font-family: 'Teko', sans-serif;
+    color: #ef3e78;
+    padding-top: 55px;
+}
+
+.test-txt h5 {
+    font-size: 24px;
+    line-height: 24px;
+    color: #222;
+    font-weight: 300;
+    margin-bottom: 0;
+    font-family: 'Teko', sans-serif;
+}
+
+.test-txt ul {
+    padding-bottom: 40px;
+}
+
+.test-txt ul li {
+    float: left;
+}
+
+.test-txt ul li i {
+    color: #f0ac18;
+}
+
+.test-txt p {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 24px;
+    color: #444;
+    font-weight: 400;
+    font-family: 'Open Sens', sans-serif;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
+
+.test-img {
+    position: relative;
+}
+
+.test-img:after {
+    position: absolute;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f10e";
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(to bottom, #fff 0%, #ddd 100%);
+    line-height: 80px;
+    border-radius: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: #ef3e78;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.slidNext {
+    position: absolute;
+    top: 50%;
+    left: -13%;
+    transform: translateY(-50%);
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 9;
+    color: #fff;
+}
+
+.slidprev {
+    position: absolute;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    top: 50%;
+    right: -13%;
+    transform: translateY(-50%);
+    z-index: 9;
+    color: #fff;
+}
+
+.test-inner.slick-initialized .slick-slide {
+    display: flex;
+}
+
+
+/*==============================================
+                Other's Page CSS Start
+        ===============================================*/
+
+
+/*==============Breadcramb Part CSS Start==============*/
+
+.breadcrun-banner {
+    background: url(../images/breadcramb-image.jpg) no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 0;
+    background-position: center;
+}
+
+.bread-inner {
+    padding: 120px 0 100px;
+}
+
+.bread-inner h1 {
+    font-weight: 600;
+    color: #ef3e78;
+    font-size: 40px;
+    line-height: 24px;
+    text-transform: capitalize;
+    font-family: 'Teko', sans-serif;
+}
+
+.breadcrun-banner ul.breadcrumb li p {
+    color: #222;
+}
+
+.breadcrun-banner ul.breadcrumb {
+    padding: 8px 0 3px;
+    display: inline-flex;
+    list-style: none;
+    background-color: transparent;
+    text-align: center;
+    font-family: 'Teko', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    z-index: 999;
+    color: #222;
+}
+
+.breadcrun-banner ul.breadcrumb li i {
+    padding-right: 6px;
+    padding-left: 6px;
+    font-size: 18px;
+}
+
+
+/*==============Breadcramb Part CSS End==============*/
+
+
+/*====================================
+   Blog Details Part CSS Start
+=======================================*/
+
+.blog-detail {
+    padding-top: 80px;
+    padding-bottom: 90px;
+}
+
+.blog-detail .btn-bar {
+    margin-top: 20px;
+}
+
+.details-img-sub ul li {
+    float: left;
+    margin: 40px 90px 70px 0px;
+    font-family: 'Open Sens', sans-serif;
+}
+
+.details-img-sub ul li:last-child {
+    margin-right: 0;
+}
+
+.details-img-sub ul li h5 {
+    color: #999;
+    font-size: 16px;
+}
+
+.details-img-sub ul li p {
+    color: #444;
+    font-size: 20px;
+}
+
+.detail-text-in h4,
+.detail-text h4 {
+    color: #222;
+    text-align: center;
+    font-family: 'Teko', sans-serif;
+    font-size: 32px;
+    line-height: 34px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.detail-text-in h4 {
+    text-align: left;
+    letter-spacing: -1px;
+}
+
+.blog-detail-inner p {
+    color: #444;
+    text-align: center;
+    font-family: 'Open Sens', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.detail-text-in p {
+    text-align: left;
+}
+
+.detail-text-in h4,
+.detail-text-img img {
+    margin-top: 20px;
+}
+
+.detail-text-img img {
+    margin-bottom: 60px;
+}
+
+.blog-detail-inner {
+    padding-bottom: 50px;
+}
+
+.tag,
+.share {
+    position: relative;
+}
+
+.tag ul li,
+.share ul li {
+    float: left;
+}
+
+.share ul li a i {
+    text-align: center;
+    color: #ef3e78;
+    font-size: 16px;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    margin-left: 10px;
+    border-radius: 3px;
+    border: 1px solid #ef3e78;
+}
+
+.share ul li:hover i {
+    color: #fff;
+    background: #ef3e78;
+    transition: all linear .5s;
+    -webkit-transition: all linear .5s;
+    -moz-transition: all linear .5s;
+    -ms-transition: all linear .5s;
+    -o-transition: all linear .5s;
+}
+
+.tag h2,
+.share h2 {
+    color: #444;
+    font-family: 'Open Sens', sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.tag ul li a {
+    text-align: center;
+    color: #999;
+    padding: 6px 14px;
+    margin-left: 10px;
+    border: 1px solid #999;
+}
+
+.tag ul li:hover a {
+    border: 1px solid #ef3e78;
+    color: #ef3e78;
+    transition: all linear .5s;
+    -webkit-transition: all linear .5s;
+    -moz-transition: all linear .5s;
+    -ms-transition: all linear .5s;
+    -o-transition: all linear .5s;
+}
+
+.tag ul {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+}
+
+.share ul {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: -10px;
+}
+
+.tag:after,
+.share:after {
+    position: absolute;
+    content: '';
+    width: 92px;
+    left: 120px;
+    height: 1px;
+    background: #999;
+    opacity: 0.6;
+    z-index: 99;
+    top: 12px;
+}
+
+.tag:after {
+    width: 98px;
+    left: 60px;
+}
+
+.comments-title h4 {
+    color: #ef3e78;
+    font-family: 'Teko', sans-serif;
+    font-size: 32px;
+    line-height: 34px;
+    font-weight: 600;
+    margin-top: 60px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.comments {
+    margin-top: 40px;
+}
+
+.blog_comments {
+    padding-bottom: 16px;
+}
+
+.comment-border {
+    position: relative;
+}
+
+.comment-border:after {
+    position: absolute;
+    content: '';
+    width: 86%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 99;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.media-heading {
+    color: #222;
+    font-family: 'Teko', sans-serif;
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 600;
+}
+
+.blog_media {
+    padding-left: 15px;
+}
+
+.media {
+    margin-bottom: 30px;
+}
+
+.media-first {
+    padding-bottom: 26px;
+    border-bottom: 1px solid #ddd;
+}
+
+.media-left img {
+    box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+    -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+    -moz-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+    -o-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+}
+
+.media-heading span {
+    color: #999;
+    font-family: 'Open Sens', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    float: right;
+}
+
+.blog_media p {
+    color: #444;
+    font-family: 'Open Sens', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    float: right;
+}
+
+.blog_media a {
+    color: #999;
+    font-family: 'Open Sens', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    padding-top: 8px;
+}
+
+.reply-comment {
+    margin-left: 50px;
+}
+
+.white-comment {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+.blogdetails_form .form-group textarea {
+    color: #777;
+    font-family: 'Open Sens', sans-serif;
+    resize: none;
+    border: 1px solid #ddd;
+    border-radius: 0px;
+    font-size: 13px;
+    width: 100%;
+    height: 160px;
+    padding: 5px 10px;
+}
+
+.blog-mess-link p {
+    color: #444;
+    font-family: 'Open Sens', sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.blog-mess-link p a {
+    text-decoration: underline;
+}
+
+.blog-fb {
+    color: #3272f5;
+}
+
+.blog-gl {
+    color: #999;
+}
+
+.media-body:hover a {
+    color: #ef3e78;
+    transition: all linear .5s;
+    -webkit-transition: all linear .5s;
+    -moz-transition: all linear .5s;
+    -ms-transition: all linear .5s;
+    -o-transition: all linear .5s;
+}
+
+
+/*==========================================
+       Blog Details Page CSS End
+=======================================*/
+
+
+/*====================================
+   Error page Part CSS Start
+=======================================*/
+
+.error {
+    background: #cd2c61;
+    position: relative;
+    padding-bottom: 140px;
+}
+
+.error-txt h3 {
+    color: #fff;
+    font-family: 'Teko', sans-serif;
+    font-size: 240px;
+    line-height: 240px;
+    font-weight: 600;
+    padding-top: 40px;
+}
+
+.heart {
+    position: relative;
+}
+
+.heart-beat {
+    margin-left: -31px;
+    margin-top: 3%;
+    animation: animateHeart 1.2s infinite;
+}
+
+@keyframes animateHeart {
+    0% {
+        transform: scale(0.8);
+    }
+    5% {
+        transform: scale(0.9);
+    }
+    10% {
+        transform: scale(0.8);
+    }
+    15% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.8);
+    }
+    100% {
+        transform: scale(0.8);
+    }
+}
+
+.error-btm h5 {
+    color: #fff;
+    text-align: center;
+    font-family: 'Teko', sans-serif;
+    font-size: 170px;
+    line-height: 34px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.error-btm p {
+    color: #fff;
+    text-align: center;
+    font-family: 'Open Sens', sans-serif;
+    font-size: 16px;
+    word-spacing: 2px;
+    line-height: 24px;
+    font-weight: 400;
+    padding: 50px 0 20px;
+}

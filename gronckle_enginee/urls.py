@@ -23,8 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('c-admin/',include('apps.admin_panel.urls')),
     path('accounts/',include('apps.accounts.urls')),
-    path('groups/',include('apps.user_groups.urls')),
     path('test/',include('apps.test.urls')),
     path('demo/',include('modules.front_demo.urls')),
+    path('',include('modules.home_page.urls')),
    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

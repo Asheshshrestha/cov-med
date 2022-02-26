@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+{% include 'frontend/slices/head.html' %}
+{% endblock head%}
+
+<body data-spy="scroll" data-target="#nav-part" data-offset="90">
+
+    <!-- ===================
+       back to top start 
+     =================== -->
+    {% block toptostartbtn %}
+    {% include 'frontend/slices/back_to_top.html' %}
+    {% endblock toptostartbtn %}
+    <!-- ===================
+       back to top End 
+     =================== -->
+
+    <!--===================
+    Navbar Part HTML Start
+    =====================-->
+    {% block navbar %}
+    {% include 'frontend/slices/navbar.html' %}
+    {% endblock navbar %}
+    
+    {% block page_content %}
+    
+    
+    
+    {% endblock page_content %}
+    
+
+    <!--====================
+    Contact Part HTML Start
+    ======================-->
+    {% block footer %}
+    {% include 'frontend/slices/footer.html' %}
+    {% endblock footer %}
+
+
+    <!--===========================
+        Contact Part HTML End
+    ============================-->
+    {% block scripts %}
+    {% include 'frontend/slices/scripts.html' %}
+    {% endblock scripts %}
+</body>
+
+
+</html>
