@@ -83,6 +83,16 @@ class UserSignupForm(forms.Form):
         if password != password_confirm:
            raise forms.ValidationError('Password must match to each other.')
                 
+class UserUpdateForm(forms.Form):
+    GENDER_CHOICES = [('male', 'Male'), ('female', 'Female'),('other','Other')]
+
+    email = forms.EmailField(required=True,widget=forms.TextInput(attrs={'readonly':'true'}))
+    username = forms.CharField(max_length=255,required=True,widget=forms.TextInput(attrs={'readonly':'true'}))
+    first_name = forms.CharField(required=True,max_length=255)
+    last_name = forms.CharField(required=True,max_length=255)
+    age = forms.IntegerField(required=True,min_value=1,max_value=100)
+    dateofbirth = forms.DateField(required=True,widget=forms.TextInput(attrs={'type':'date'}))
+    gender = forms.ChoiceField(choices=GENDER_CHOICES)
 
 class UserUpadteForm(forms.ModelForm):
     groups = forms.ModelMultipleChoiceField(

@@ -1,3 +1,36 @@
 <a href="#" id="back-top-btn">
     <i class="fas fa-angle-double-up"></i>
 </a>
+
+
+
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-{{ error.tags }} alert-dismissible fade show alert-fixed" role="alert">
+                {{ error|escape }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-{{ error.tags }} alert-dismissible fade show alert-fixed" role="alert">
+            {{ error|escape }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+    {% endif %}
+    {% if messages %}
+    {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show alert-fixed" role="alert">
+                {{ message|escape }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+    {% endfor %}
+{% endif %}

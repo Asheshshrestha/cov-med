@@ -1,0 +1,109 @@
+{% extends 'frontend/pages/_layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block page_content %}
+
+<section id="home" class="home section mt-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="order-model">
+                        <div class="log-sign" role="document">
+                            <div class="modal-content m-4">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel15"></h5>
+                                    <span class="download-close" data-dismiss="modal" aria-label="Close"><span></span></span>
+                                </div>
+                                <div id="letter5">
+                                    <div class="letter_inner">
+
+                                        <div class="heading color-b">
+                                            <h2>Update Profile</h2>
+                                        </div>
+                                        <div class="model-project-details">
+                                            <div class="heading color-b">
+                                                <div class="tab-content">
+                                                    <div role="tabpanel" class="tab-pane active tab-log" id="profile2">
+                                                        <form method='POST' enctype="multipart/form-data" id="user_signup_form">
+                                                            {% csrf_token %}
+                                                           
+                                                            <div class="row">
+                                                                <div class="col-12 col-md-6">
+                                                                    {{ form.username|as_crispy_field}}
+                                                                </div>
+                                                                <div class="col-12 col-md-6">
+                                                                    {{ form.email|as_crispy_field}}
+                                                                </div>
+                                                                <div class="col-12 col-md-6">
+                                                                    {{ form.first_name|as_crispy_field}}
+                                                                </div>
+                                                                <div class="col-12 col-md-6">
+                                                                    {{ form.last_name|as_crispy_field}}
+                                                                </div>
+                                                                
+                                                                <div class="col-12 col-md-6">
+                                                                    {{ form.dateofbirth|as_crispy_field}}
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row">
+
+                                                                <div class="col-12 col-md-6">
+                                                                    {{ form.gender|as_crispy_field}}
+                                                                </div>
+                                                                <div class="col-12 col-md-6">
+                                                                    {{ form.age|as_crispy_field}}
+                                                                </div>
+                                                            </div>
+                                                            {% if form.errors %}
+                                                                    {% for field in form %}
+                                                                        {% for error in field.errors %}
+                                                                            <div class="row">
+
+                                                                                <div class="alert alert-warning col-12 col-md-12" role="alert">
+                                                                                    {{ error|escape }}
+                                                                                </div>
+                                                                            </div>
+                                                                        {% endfor %}
+                                                                    {% endfor %}
+                                                                    {% for error in form.non_field_errors %}
+                                                                        <div class="row">
+
+                                                                            <div class="alert alert-warning col-12 col-md-12" role="alert">
+                                                                                {{ error|escape }}
+                                                                            </div>
+                                                                        </div>
+                                                                    {% endfor %}
+                                                            {% endif %}
+
+                                                            
+                                                            
+                                                            <div class="row">
+
+                                                                <div class="col-md-12">
+                                                                    <div class="form-btn test">
+                                                                        <div class="btn-bar">
+                                                                            <button type="submit" class="">Submit</button>
+                                                                            <a href="{% url 'index_home' %}" class="">Back To Home</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+  {% endblock page_content%}

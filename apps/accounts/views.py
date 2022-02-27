@@ -14,7 +14,7 @@ from django.views.generic import View
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
-from apps.accounts.forms import SignupForm,UserUpadteForm,ResetPasswordForm,ChangePasswordDashboardForm,UserSignupForm
+from apps.accounts.forms import SignupForm,UserUpadteForm,ResetPasswordForm,ChangePasswordDashboardForm,UserSignupForm,UserUpdateForm
 from django.contrib.auth.hashers import check_password
 from apps.accounts.models import BasicUserProfile
 from django.contrib.auth.models import Group
@@ -208,6 +208,54 @@ class SignUpViewFront(View):
         else:
             print('what the heck')
             messages.warning(request,'Sorry cannot signup now please try again later.')
+            return render(request,self.template_name,{'form':form})
+class ProfileViewFront(View):
+
+    template_name = 'frontend/pages/update_profile/update_profile.html'
+
+    def get(self,request,*args,**kwargs):
+        current_user = User.objects.get(username=request.user)
+        current_user_profile,e = BasicUserProfile.objects.get_or_create(user=current_user)
+        if e:
+            current_user_profile.dateofbirth = '1998-02-01'
+            current_user_profile.age = 1
+            current_user_profile.gender = 'male'
+            current_user_profile.save()
+        data = {"username":current_user.username,
+                "email":current_user.email,
+                "first_name":current_user.first_name,
+                "last_name":current_user.last_name,
+                "age":current_user_profile.age,
+                "dateofbirth":current_user_profile.dateofbirth,
+                "gender":current_user_profile.gender}
+        form = UserUpdateForm(data=data)
+        return render(request,self.template_name,{'form':form})
+    def post(self, request):
+        form = UserUpdateForm(request.POST)
+        if form.is_valid():
+            first_name =  form.cleaned_data.get('first_name')
+            last_name =  form.cleaned_data.get('last_name')
+            age =  form.cleaned_data.get('age')
+            dateofbirth =  form.cleaned_data.get('dateofbirth')
+            gender =  form.cleaned_data.get('gender')
+
+            user = User.objects.get(username=request.user)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+
+            user_profile = BasicUserProfile.objects.get(user=request.user)
+            user_profile.age = age
+            user_profile.dateofbirth = dateofbirth
+            user_profile.gender = gender
+            user_profile.save()
+            
+            messages.success(request,'Successfully updated your account.')
+            return HttpResponseRedirect(settings.HOME_PAGE_REDIRECT_URL)
+            
+            
+        else:
+            messages.warning(request,'Sorry cannot update your profile now please try again later.')
             return render(request,self.template_name,{'form':form})
 
 class GUpdateUserAdmin(SuccessMessageMixin,UpdateView):
