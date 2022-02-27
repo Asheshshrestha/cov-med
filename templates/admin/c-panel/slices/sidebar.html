@@ -30,7 +30,7 @@
                 <a {% if nav_link == 'medcore' %} class="active-menu" {% endif %} href="#"><i class="fa fa-h-square"></i></i>Medic Management<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#"><i class="fa fa-hospital"></i>Hospital</a>
+                        <a href="{% url 'hospital_index' %}"><i class="fa fa-hospital"></i>Hospital</a>
                     </li>
                     <li>
                         <a href="{% url 'service_index' %}"><i class="fa fa-server"></i>Services</a>

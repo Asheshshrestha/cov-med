@@ -1,0 +1,85 @@
+{% extends 'admin/c-panel/pages/_layout.html' %}
+{% load static %} {% load crispy_forms_tags %}
+
+{% block page_content %}
+<div class="row">
+    <div class="col-md-12 col-sm-">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                Service Form
+            </div>
+            <div class="panel-body">
+                <form method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                   <div class="row">
+                        <div class="col-md-4">
+                            {{ form.hospital_name|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.hospital_code|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.hospital_webiste_url|as_crispy_field}}
+                        </div>
+                   </div>
+                   
+                   <div class="row">
+                        <div class="col-md-4">
+                            {{ form.hospital_provience|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.hospital_city|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.hospital_location|as_crispy_field}}
+                        </div>
+                   </div>
+                   <div class="row">
+                        <div class="col-md-4">
+                            {{ form.emergency_phone|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.reception_phone|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.hospital_map_location_url|as_crispy_field}}
+                        </div>
+                   </div>
+                   <div class="row">
+                        <div class="col-md-7">
+                            {{ form.hospital_services|as_crispy_field}}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.hospital_logo|as_crispy_field}}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.hospital_image|as_crispy_field}}
+                        </div>
+                   </div>
+                   
+                   <div class="row">
+                        <div class="col-md-8">
+                            {{ form.hospital_description|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.in_service|as_crispy_field}}
+                        </div>
+                        
+                   </div>
+                   
+                   <button type="submit" class="btn btn-success">Submit</button>
+                   <a href="{% url 'hospital_index' %}" class="btn btn-danger">Cancel</a>
+                </form>
+            </div>
+            <div class="panel-footer">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+              
+{% endblock page_content %}

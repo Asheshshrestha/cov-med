@@ -45,8 +45,11 @@ INSTALLED_APPS = [
     'apps.user_groups',
     'apps.test',
     'apps.services',
+    'apps.hospital',
+    
     #user side apps
     'modules.front_demo',
+    'modules.home_page',
 
     #third party apps
     'crispy_forms'

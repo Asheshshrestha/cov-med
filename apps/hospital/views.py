@@ -8,69 +8,68 @@ from django.shortcuts import HttpResponse, HttpResponseRedirect, get_object_or_4
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 
-from apps.services.forms import HospitalServiceModuleForm
-from apps.services.models import HospitalServiceModule
-# Create your views here.
-class ServiceIndex(LoginRequiredMixin,ListView):
+from apps.hospital.models import HospitalModel
+from apps.hospital.forms import HospitalModelForm
 
-    template_name = 'admin/c-panel/pages/services/index.html'
-    model = HospitalServiceModule
+class HospitalIndex(LoginRequiredMixin,ListView):
+
+    template_name = 'admin/c-panel/pages/hospital/index.html'
+    model = HospitalModel
     def get_queryset(self,*args,**kwargs):
 
-        qs = super(ServiceIndex,self).get_queryset(*args,**kwargs)
+        qs = super(HospitalIndex,self).get_queryset(*args,**kwargs)
         qs = qs.order_by("-id")
         return qs
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'medcore' 
-        context["page_name"] = 'Hospital Services' 
+        context["page_name"] = 'Hospital Management' 
         return context
 
-
-class AddHospitalService(CreateView):
-    form_class = HospitalServiceModuleForm
-    success_url = reverse_lazy('service_index')
-    template_name = 'admin/c-panel/pages/services/manage.html'
+class AddHospital(SuccessMessageMixin,CreateView):
+    form_class = HospitalModelForm
+    success_url = reverse_lazy('hospital_index')
+    template_name = 'admin/c-panel/pages/hospital/manage.html'
+    success_message = "Hospital Created Successfully."
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'medcore' 
-        context["page_name"] = 'Hospital Services' 
+        context["page_name"] = 'Hospital Management' 
         return context
 
-
-class UpdateHospitalService(SuccessMessageMixin,UpdateView):
-    model = HospitalServiceModule
-    form_class = HospitalServiceModuleForm
-    template_name = 'admin/c-panel/pages/services/manage.html'
-    success_message = "Services Updated Successfully."
+class UpdateHospital(SuccessMessageMixin,UpdateView):
+    model = HospitalModel
+    form_class = HospitalModelForm
+    template_name = 'admin/c-panel/pages/hospital/manage.html'
+    success_message = "Hospital Updated Successfully."
     pk_url_kwarg = 'pk'
 
-    success_url = reverse_lazy('service_index')
+    success_url = reverse_lazy('hospital_index')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'medcore' 
-        context["page_name"] = 'Hospital Services' 
+        context["page_name"] = 'Hospital Management' 
         return context
 
-class DeleteHospitalService(SuccessMessageMixin,DeleteView):
-    template_name = 'admin/c-panel/pages/services/delete.html'
-    success_message = "User Delete Successfully."
+class DeleteHospital(SuccessMessageMixin,DeleteView):
+    template_name = 'admin/c-panel/pages/hospital/delete.html'
+    success_message = "Hospital Delete Successfully."
     pk_url_kwarg = 'pk'
-    success_url = reverse_lazy('service_index')
+    success_url = reverse_lazy('hospital_index')
     
     def get_object(self):
         id_ = self.kwargs.get("pk")
-        return get_object_or_404(HospitalServiceModule,id=id_)
+        return get_object_or_404(HospitalModel,id=id_)
         
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'medcore' 
-        context["page_name"] = 'Hospital Services' 
+        context["page_name"] = 'Hospital Management' 
         return context
 
     def delete(self, request, *args, **kwargs):
         messages.warning(self.request, self.success_message)
-        return super(DeleteHospitalService, self).delete(request, *args, **kwargs)
+        return super(DeleteHospital, self).delete(request, *args, **kwargs)
