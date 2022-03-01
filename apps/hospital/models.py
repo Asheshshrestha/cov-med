@@ -19,3 +19,6 @@ class HospitalModel(models.Model):
     hospital_logo = models.ImageField(upload_to='hospital/logo',default='hospital/default.png',blank=True,null=True)
     hospital_image = models.ImageField(upload_to='hospital/images',default='hospital/default.png',blank=True,null=True)
     hospital_description = models.TextField(max_length=1040,blank=True,null=True)
+
+    def __str__(self):
+        return self.hospital_name

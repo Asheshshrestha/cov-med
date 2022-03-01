@@ -64,7 +64,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django_session_timeout.middleware.SessionTimeoutMiddleware',
 ]
 
 ROOT_URLCONF = 'gronckle_enginee.urls'
@@ -152,9 +151,6 @@ HOME_PAGE_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
 USER_LOGIN_REDIRECT_URL = '/'
 STAFF_LOGIN_REDIRECT_URL = '/c-admin/home/'
-
-
-
 
 
 EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"

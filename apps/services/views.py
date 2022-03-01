@@ -56,7 +56,7 @@ class UpdateHospitalService(SuccessMessageMixin,UpdateView):
 
 class DeleteHospitalService(SuccessMessageMixin,DeleteView):
     template_name = 'admin/c-panel/pages/services/delete.html'
-    success_message = "User Delete Successfully."
+    success_message = "Services Delete Successfully."
     pk_url_kwarg = 'pk'
     success_url = reverse_lazy('service_index')
     

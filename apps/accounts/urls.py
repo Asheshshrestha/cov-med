@@ -20,15 +20,15 @@ from django.contrib.auth.views import PasswordResetView,PasswordResetConfirmView
 urlpatterns = [
        path('login/',GLoginView.as_view(),name='login'),
        path('logout/',GLogoutView.as_view(),name='logout'),
-       path('list/',(permission_required('is_staff'))(GUserListView.as_view()),name='user_list'),
-       path('register/',(permission_required('is_staff'))(SignUpViewAdmin.as_view()),name='user_register'),
+       path('list/',(GUserListView.as_view()),name='user_list'),
+       path('register/',(SignUpViewAdmin.as_view()),name='user_register'),
        path('signup/',SignUpViewFront.as_view(),name='signup'),
-       path('<int:pk>/resetpassword/',(permission_required('is_staff'))(GPasswordResetView.as_view()),name='user_reset_password'),
-       path('changepassword/',(permission_required('is_staff'))(GChangePasswordView.as_view()),name='change_password'),
+       path('<int:pk>/resetpassword/',(GPasswordResetView.as_view()),name='user_reset_password'),
+       path('changepassword/',(GChangePasswordView.as_view()),name='change_password'),
        path('userchangepassword/',login_required(ChangePasswordFront.as_view()),name='change_password_front'),
        path('userupdateprofile/',login_required(ProfileViewFront.as_view()),name='update_profile_front'),
-       path('<int:pk>/update/',(permission_required('is_staff'))(GUpdateUserAdmin.as_view()),name='update_user'),
-       path('<int:pk>/delete/',(permission_required('is_staff'))(GDeleteUserConfirmAdmin.as_view()),name='delete_user_confirm'),
+       path('<int:pk>/update/',(GUpdateUserAdmin.as_view()),name='update_user'),
+       path('<int:pk>/delete/',(GDeleteUserConfirmAdmin.as_view()),name='delete_user_confirm'),
        path('password-reset/',
          PasswordResetView.as_view(
              template_name='frontend/pages/forget_password/password_reset.html'

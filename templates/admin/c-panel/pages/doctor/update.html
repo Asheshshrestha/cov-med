@@ -1,0 +1,113 @@
+{% extends 'admin/c-panel/pages/_layout.html' %}
+{% load static %} {% load crispy_forms_tags %}
+
+{% block page_content %}
+<div class="row">
+    {{form.errors}}
+    <div class="col-md-12 col-sm-">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                Doctor Form
+            </div>
+            <div class="panel-body">
+                <form method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                   
+                   <div class="row">
+                        <div class="col-md-4">
+                            {{ form.first_name|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.last_name|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.median_name|as_crispy_field}}
+                        </div>
+                        
+                   </div>
+                   <div class="row">
+                        <div class="col-md-4">
+                            {{ form.gender|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.dateofbirth|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.age|as_crispy_field}}
+                        </div>
+                        
+                   </div>
+                   <div class="row">
+                        <div class="col-md-4">
+                            {{ form.personal_phone_no|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.private_gmail|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.office_phone_no|as_crispy_field}}
+                        </div>
+                        
+                   </div>
+                   
+                   <div class="row">
+                        <div class="col-md-3">
+                            {{ form.permanent_address|as_crispy_field}}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.current_address|as_crispy_field}}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.country|as_crispy_field}}
+                        </div>
+                        
+                        <div class="col-md-3">
+                            {{ form.profile_image|as_crispy_field}}
+                        </div>
+                        
+                   </div>
+                   <div class="row">
+                        <div class="col-md-12">
+                            {{ form.hospital|as_crispy_field}}
+                        </div>
+                        
+                        
+                   </div>
+                   <div class="row">
+                        <div class="col-md-4">
+                            {{ form.medical_specialties|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.job_type|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.availablility|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.highest_degree|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.studied_in|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.doctor_licence|as_crispy_field}}
+                        </div>
+                        
+                   </div>
+                   
+                   <button type="submit" class="btn btn-success">Submit</button>
+                   <a href="{% url 'doctor_index' %}" class="btn btn-danger">Cancel</a>
+                </form>
+            </div>
+            <div class="panel-footer">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+              
+{% endblock page_content %}

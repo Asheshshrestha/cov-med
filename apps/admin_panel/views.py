@@ -1,21 +1,25 @@
 from django.forms import fields
+from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import TemplateView,UpdateView,DetailView
 from apps.admin_panel.models import WebsiteSettingModel
 from apps.admin_panel.forms import WebsiteSettingForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
 
 
 class GIndex(LoginRequiredMixin,TemplateView):
 
     template_name = 'admin/c-panel/pages/index/index.html'
-    
+  
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'index' 
         return context
+    
 
 class GDetailSetting(DetailView):
     template_name = 'admin/c-panel/pages/settings/sitesetting.html'

@@ -1,0 +1,54 @@
+{% extends 'admin/c-panel/pages/_layout.html' %}
+
+{% block page_content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Advanced Tables -->
+        <div class="panel panel-default">
+            <div class="panel-heading ">
+                <span>Doctor Table</span>
+                <a href="{% url 'create_doctor' %}"class="btn btn-success btn-sm "><i class="fa fa-plus"></i> Add New</a>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="user_datatable">
+                        <thead>
+                            <tr>
+                                <th>Doctor Name</th>
+                                <th>Doctor Reg. No.</th>
+                                <th>Hospital</th>
+                                <th>Degree</th>
+                                <th>Speciality</th>
+                                <th>Settings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for doctor in object_list %}
+                            <tr class="odd gradeX">
+                                <td>Dr. {{ doctor.reffer_user.get_full_name|default:"N/A" }}</td>
+                                <td>{{ doctor.doctor_regestriation_no|default:"N/A" }}</td>
+                                <td>{{ doctor.hospital.hospital_name }}</td>
+                                <td>{{ doctor.highest_degree|default:"N/A" }}</td>
+                                <td>{{ doctor.medical_specialties|default:"N/A" }}</td>
+                               <td>
+                                     {% if perms.test.edit_hospitalmodel %}
+                                    <a href="{% url 'update_doctor' pk=doctor.id %}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                                    {% endif %}
+                                    {% if perms.test.edit_hospitalmodel %}
+                                    <a href="{% url 'delete_doctor' pk=doctor.id %}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
+                                    {% endif %} 
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <!--End Advanced Tables -->
+    </div>
+</div>
+              
+{% endblock page_content %}

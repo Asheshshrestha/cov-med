@@ -6,6 +6,10 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.db.models.query import QuerySet
 from django.forms import ValidationError, widgets
 from django.forms import fields
+
+class PasswordResetForm(forms.Form):
+    email = forms.EmailField(max_length=300)
+    
 class LoginForm(forms.Form):
 
     username = forms.CharField(max_length=100)
@@ -64,6 +68,7 @@ class SignupForm(forms.ModelForm):
                     'is_staff',
                     'is_active')
 class UserSignupForm(forms.Form):
+
     GENDER_CHOICES = [('male', 'Male'), ('female', 'Female'),('other','Other')]
 
     email = EmailValidation(required=True)

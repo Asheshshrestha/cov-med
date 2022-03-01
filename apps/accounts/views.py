@@ -3,7 +3,7 @@ from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.messages.views import SuccessMessageMixin
 from django.forms import ValidationError
-from django.http import request
+from django.http import HttpRequest, request
 from django.shortcuts import HttpResponse, HttpResponseRedirect, get_object_or_404, redirect, render
 from django.urls.base import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -14,10 +14,17 @@ from django.views.generic import View
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
-from apps.accounts.forms import SignupForm,UserUpadteForm,ResetPasswordForm,ChangePasswordDashboardForm,UserSignupForm,UserUpdateForm
+from apps.accounts.forms import (SignupForm,
+                                UserUpadteForm,
+                                ResetPasswordForm,
+                                ChangePasswordDashboardForm,
+                                UserSignupForm,UserUpdateForm,
+                                PasswordResetForm)
 from django.contrib.auth.hashers import check_password
 from apps.accounts.models import BasicUserProfile
 from django.contrib.auth.models import Group
+import string    
+import random
 
 
 class GLoginView(View):
@@ -28,11 +35,14 @@ class GLoginView(View):
     def post(self, request):
         form = AuthenticationForm(None,request.POST)
         if form.is_valid():
+            print('valid')
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
+                print('access')
                 login(request, user)
+                print(request.user.is_staff)
                 if request.user.is_staff:
                     return HttpResponseRedirect(settings.STAFF_LOGIN_REDIRECT_URL)
                 else:
@@ -41,6 +51,7 @@ class GLoginView(View):
                 messages.warning(request,'Sorry can\'t login please try again later')
                 return HttpResponseRedirect(settings.LOGIN_URL)
         else:
+            print('notvalid')
             return render(request,self.template_name,{'form':form})
 
 class GPasswordResetView(View):
@@ -170,6 +181,20 @@ class SignUpViewAdmin(CreateView):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'users' 
         return context
+    # def form_valid(self,form):
+    #     self.object = form.save(commit=False)
+    #     random_password = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 10))    
+    #     self.object.password = random_password
+    #     self.object.save()
+
+    #     email = form.cleaned_data['email']
+    #     try:
+    #         if email:
+    #             print('Email',email)
+    #     except Exception as e:
+    #         messages.warning(request,'Error occured whlile creating account.')
+
+    #     return super(SignUpViewAdmin, self).form_valid(form)
 class SignUpViewFront(View):
 
     template_name = 'frontend/pages/signup/user_signup.html'
@@ -197,7 +222,10 @@ class SignUpViewFront(View):
                 user_group = Group.objects.get(name='User') 
                 user_group.user_set.add(new_user)
 
-                user_profile = BasicUserProfile(age=age,dateofbirth= dateofbirth,gender=gender,user = new_user)
+                user_profile = BasicUserProfile(age=age,
+                                                dateofbirth= dateofbirth,
+                                                gender=gender,
+                                                reffer_user = new_user)
                 user_profile.save()
                 messages.success(request,'Successfully created your account.')
                 return HttpResponseRedirect(settings.LOGIN_URL)
@@ -214,8 +242,9 @@ class ProfileViewFront(View):
     template_name = 'frontend/pages/update_profile/update_profile.html'
 
     def get(self,request,*args,**kwargs):
+        print('only get')
         current_user = User.objects.get(username=request.user)
-        current_user_profile,e = BasicUserProfile.objects.get_or_create(user=current_user)
+        current_user_profile,e = BasicUserProfile.objects.get_or_create(reffer_user=current_user)
         if e:
             current_user_profile.dateofbirth = '1998-02-01'
             current_user_profile.age = 1
@@ -231,6 +260,7 @@ class ProfileViewFront(View):
         form = UserUpdateForm(data=data)
         return render(request,self.template_name,{'form':form})
     def post(self, request):
+        print('it is post')
         form = UserUpdateForm(request.POST)
         if form.is_valid():
             first_name =  form.cleaned_data.get('first_name')
