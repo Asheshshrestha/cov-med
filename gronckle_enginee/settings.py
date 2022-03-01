@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.test',
     'apps.services',
     'apps.hospital',
+    'apps.appointment',
     
     #user side apps
     'modules.front_demo',
@@ -80,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'modules.home_page.front_context_processor.get_logo',
             ],
         },
     },

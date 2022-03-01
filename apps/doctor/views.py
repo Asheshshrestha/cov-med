@@ -61,10 +61,8 @@ class AddDoctor(View):
                                                   'page_name':'Doctor Management'})
 
     def post(self,request):
-        form = DoctorSignupForm(request.POST)
-        print(form.errors)
+        form = DoctorSignupForm(request.POST,request.FILES)
         if form.is_valid():
-            print(' valid')
             email = form.cleaned_data.get('email')
             username = form.cleaned_data.get('username')
             firs_name = form.cleaned_data.get('first_name')
@@ -87,8 +85,7 @@ class AddDoctor(View):
             highest_degree = form.cleaned_data.get('highest_degree')
             studied_in = form.cleaned_data.get('studied_in')
             doctor_licence = form.cleaned_data.get('doctor_licence')
-            random_password = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 12))    
-            print(form.data)
+            random_password = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 12)) 
             if len(random_password) == 12:
                 new_user = User.objects.create_user(username,email,random_password)
                 new_user.first_name = firs_name
@@ -148,36 +145,13 @@ class UpdateDoctor(View):
     
     def get(self,request,pk,*args,**kwargs):
         profile = BasicUserProfile.objects.get(id=pk)
-        data ={"first_name":profile.reffer_user.first_name,
-                "last_name":profile.reffer_user.last_name,
-                "age":profile.age,
-                "dateofbirth":profile.dateofbirth,
-                "gender":profile.gender,
-                "median_name":profile.median_name,
-                "personal_phone_no":profile.personal_phone_no,
-                "office_phone_no":profile.office_phone_no,
-                "permanent_address":profile.permanent_address,
-                "current_address":profile.current_address,
-                "country":profile.country,
-                "private_gmail":profile.private_gmail,
-                "profile_image":profile.profile_image,
-                "medical_specialties":profile.medical_specialties,
-                "hospital":profile.hospital.id,
-                "job_type":profile.job_type,
-                "availablility":profile.availablility,
-                "highest_degree":profile.highest_degree,
-                "dateofbirth":profile.dateofbirth,
-                "studied_in":profile.studied_in,
-                "doctor_licence":profile.doctor_licence,
-                
-                }
-        form = DoctorUpdateForm(data=data)
+        form = DoctorUpdateForm(instance= profile)
         return render(request,self.template_name,{'form':form,
                                                   'nav_link':'medcore',
                                                   'page_name':'Doctor Management'})
 
     def post(self,request,pk):
-        form = DoctorUpdateForm(request.POST)
+        form = DoctorUpdateForm(request.POST,request.FILES)
         if form.is_valid():
             firs_name = form.cleaned_data.get('first_name')
             last_name = form.cleaned_data.get('last_name')
@@ -190,6 +164,7 @@ class UpdateDoctor(View):
             permanent_address = form.cleaned_data.get('permanent_address')
             current_address = form.cleaned_data.get('current_address')
             country = form.cleaned_data.get('country')
+            doctor_regestriation_no = form.cleaned_data.get('doctor_regestriation_no')
             private_gmail = form.cleaned_data.get('private_gmail')
             profile_image = form.cleaned_data.get('profile_image')
             medical_specialties = form.cleaned_data.get('medical_specialties')
@@ -201,6 +176,8 @@ class UpdateDoctor(View):
             doctor_licence = form.cleaned_data.get('doctor_licence') 
            
             profile = BasicUserProfile.objects.get(id=pk)
+            profile.first_name = firs_name
+            profile.last_name = last_name
             profile.age = age
             profile.dateofbirth = dateofbirth
             profile.gender = gender
@@ -211,6 +188,7 @@ class UpdateDoctor(View):
             profile.current_address = current_address
             profile.country = country
             profile.private_gmail = private_gmail
+            profile.doctor_regestriation_no = doctor_regestriation_no
             profile.profile_image = profile_image
             profile.medical_specialties = medical_specialties
             profile.hospital = hospital

@@ -1,6 +1,7 @@
 from os import name
 from django.urls import path
 from django.urls.conf import include
+from apps.accounts.views import GLoginView
 from apps.admin_panel.views import GIndex,GUpdateSetting,GDetailSetting
 from django.contrib.auth.decorators import permission_required
 

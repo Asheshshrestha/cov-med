@@ -97,7 +97,7 @@ class UserUpdateForm(forms.Form):
     last_name = forms.CharField(required=True,max_length=255)
     age = forms.IntegerField(required=True,min_value=1,max_value=100)
     dateofbirth = forms.DateField(required=True,widget=forms.TextInput(attrs={'type':'date'}))
-    gender = forms.ChoiceField(choices=GENDER_CHOICES)
+    gender = forms.ChoiceField(choices=GENDER_CHOICES,)
 
 class UserUpadteForm(forms.ModelForm):
     groups = forms.ModelMultipleChoiceField(

@@ -25,6 +25,7 @@ urlpatterns = [
     path('accounts/',include('apps.accounts.urls')),
     path('test/',include('apps.test.urls')),
     path('demo/',include('modules.front_demo.urls')),
+    path('appointment/',include('apps.appointment.urls')),
     path('',include('modules.home_page.urls')),
    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
