@@ -1,0 +1,79 @@
+{% extends 'admin/c-panel/pages/_layout.html' %}
+{% load static %} 
+{% load crispy_forms_tags %}
+
+{% block page_content %}
+<div class="row">
+    <div class="col-md-12 col-sm-">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                Are You sure want to delete this Doctor?
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            Patient Name:<b>{{ object.patient_first_name|default:"N/A" }} {{ object.patient_last_name|default:"N/A" }}</b>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            Age:<b> {{ object.patient_age }}</b>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            Phone No:<b> {{ object.patient_phone_number }}</b>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            Location:<b> {{ object.patient_location }}</b>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            Gender:<b> {{ object.patient_gender }}</b>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            Apointment DateTime:<b> {{ object.appointment_date }} {{object.appointment_time}}</b>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            Symptoms:<b> {{ object.symptom_description }}</b>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            Apply Date:<b> {{ object.apply_date }}</b>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            Appointed By:<b> {{ object.reffer_user.get_full_name }}</b>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            Reffer Doctor:<b> {{ object.reffer_doctor.get_full_name }}</b>
+                        </div>
+                    </div>
+                    
+                </div>
+                <a href="{% url 'appointment_index' %}" class="btn btn-danger">Back</a>
+            </div>
+            <div class="panel-footer">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+              
+{% endblock page_content %}

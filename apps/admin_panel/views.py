@@ -10,7 +10,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 
-@method_decorator(staff_member_required,name='dispatch')
 class GIndex(LoginRequiredMixin,TemplateView):
 
     template_name = 'admin/c-panel/pages/index/index.html'
@@ -19,9 +18,6 @@ class GIndex(LoginRequiredMixin,TemplateView):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'index' 
         return context
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return redirect('index_home')
 
 class GDetailSetting(DetailView):
     template_name = 'admin/c-panel/pages/settings/sitesetting.html'
