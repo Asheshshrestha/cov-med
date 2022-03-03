@@ -1,0 +1,104 @@
+{% extends 'admin/c-panel/pages/_layout.html' %}
+{% load static %} {% load crispy_forms_tags %}
+
+{% block page_content %}
+<div class="row">
+    <div class="col-md-12 col-sm-">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                Vaccine Center Form
+            </div>
+            <div class="panel-body">
+                <form method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                   <div class="row">
+                        <div class="col-md-3">
+                            {{ form.center_name|as_crispy_field}}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.vaccine_name|as_crispy_field}}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.vaccine_batch|as_crispy_field}}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.vaccine_type|as_crispy_field}}
+                        </div>
+                        
+                   </div>
+                   
+                   <div class="row">
+                    <div class="col-md-3">
+                        {{ form.provience|as_crispy_field}}
+                    </div>
+                    <div class="col-md-3">
+                        {{ form.district|as_crispy_field}}
+                    </div>
+                        <div class="col-md-3">
+                            {{ form.location|as_crispy_field}}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.landmark|as_crispy_field}}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.map_url|as_crispy_field}}
+                        </div>
+                        <div class="col-md-8">
+                            {{ form.help_phone_no|as_crispy_field}}
+                        </div>
+                        
+                   </div>
+                   <div class="row">
+                        
+                        <div class="col-md-2">
+                            {{ form.age_group|as_crispy_field}}
+                        </div>
+                        <div class="col-md-2">
+                            {{ form.age_from|as_crispy_field}}
+                        </div>
+                        <div class="col-md-2">
+                            {{ form.age_to|as_crispy_field}}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.provide_from|as_crispy_field}}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.provide_to|as_crispy_field}}
+                        </div>
+                   </div>
+                   <div class="row">
+                        
+                        
+                        
+                   </div>
+                   <div class="row">
+                        <div class="col-md-3">
+                            {{ form.service_type|as_crispy_field}}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.is_quota|as_crispy_field}}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.quota_quantity|as_crispy_field}}
+                        </div>
+                        <div class="col-md-3">
+                            {{ form.in_effect|as_crispy_field}}
+                        </div>
+                        
+                   </div>
+                   
+                   <button type="submit" class="btn btn-success">Submit</button>
+                   <a href="{% url 'vaccinecenter_index' %}" class="btn btn-danger">Cancel</a>
+                </form>
+            </div>
+            <div class="panel-footer">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+              
+{% endblock page_content %}

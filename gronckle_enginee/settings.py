@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.services',
     'apps.hospital',
     'apps.appointment',
+    'apps.vaccinecenter',
     
     #user side apps
     'modules.front_demo',

@@ -51,10 +51,10 @@
                 <a {% if nav_link == 'covidcare' %} class="active-menu" {% endif %} href="#"><i class="fas fa-medkit"></i></i>Covid Management<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#"><i class="fa fa-vine"></i>Vaccine Request</a>
+                        <a href="{% url 'vaccinecenter_index' %}"><i class="fa fa-syringe"></i>Vaccine Center</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-cod"></i>Covid Case Management</a>
+                        <a href="#"><i class="fa fa-virus-covid"></i>Covid Case Management</a>
                     </li>
                     
                 </ul>

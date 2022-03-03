@@ -14,6 +14,7 @@ urlpatterns = [
     path('service/',include('apps.services.urls')),
     path('hospital/',include('apps.hospital.urls')),
     path('doctor/',include('apps.doctor.urls')),
+    path('corona/',include('apps.vaccinecenter.urls')),
     path('groups/',include('apps.user_groups.urls')),
     
 ]

@@ -1,0 +1,63 @@
+{% extends 'admin/c-panel/pages/_layout.html' %}
+
+{% block page_content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- Advanced Tables -->
+        <div class="panel panel-default">
+            <div class="panel-heading ">
+                <span>Vaccine Center Table</span>
+                <a href="{% url 'create_vaccinecenter' %}"class="btn btn-success btn-sm "><i class="fa fa-plus"></i> Add New</a>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="user_datatable">
+                        <thead>
+                            <tr>
+                                <th>Center Name</th>
+                                <th>Location</th>
+                                <th>Vaccine Name</th>
+                                <th>Vaccine Type</th>
+                                <th>Provided From</th>
+                                <th>Provided To</th>
+                                <th>Contact</th>
+                                <th>Settings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for center in object_list %}
+                            <tr class="odd gradeX">
+                                <td>{{ center.center_name|default:"N/A" }}</td>
+                                <td>{{ center.provience}}>{{center.district}}>{{center.location}}</td>
+                                <td>{{ center.vaccine_name|default:"N/A" }}</td>
+                                <td>{{ center.vaccine_type|default:"N/A" }}</td>
+                                <td>{{ center.provide_from|default:"N/A" }}</td>
+                                <td>{{ center.provide_to|default:"N/A" }}</td>
+                                <td>{{ center.help_phone_no|default:"N/A" }}</td>
+                                
+                                
+                                <td>
+                                    {% if perms.test.edit_hospitalservicemodule %}
+                                    <a href="{% url 'update_vaccinecenter' pk=center.id %}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                                    {% endif %}
+                                    {% if perms.test.edit_hospitalservicemodule %}
+                                    <a href="{% url 'delete_vaccinecenter' pk=center.id %}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
+                                    {% endif %}
+                                
+                                
+								
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <!--End Advanced Tables -->
+    </div>
+</div>
+              
+{% endblock page_content %}
