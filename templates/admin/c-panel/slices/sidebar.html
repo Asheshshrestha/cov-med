@@ -22,7 +22,7 @@
             </li>
             {% if perms.test.view_testmodel %}
             <li>
-                <a {% if nav_link == 'test' %} class="active-menu" {% endif %} href="{% url 'test_list' %}"><i class="fas fa-user-tag"></i>Test</a>
+                <a {% if nav_link == 'test' %} class="active-menu" {% endif %} href="#"><i class="fas fa-user-tag"></i>Test</a>
             </li>
 
             {% endif %}
@@ -54,7 +54,7 @@
                         <a href="{% url 'vaccinecenter_index' %}"><i class="fa fa-syringe"></i>Vaccine Center</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-virus-covid"></i>Covid Case Management</a>
+                        <a href="{% url 'covidlist_index' %}"><i class="fa fa-virus-covid"></i>Covid Case</a>
                     </li>
                     
                 </ul>

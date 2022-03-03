@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'apps.accounts',
     'apps.admin_panel',
     'apps.user_groups',
-    'apps.test',
     'apps.services',
     'apps.hospital',
     'apps.appointment',

@@ -9,6 +9,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
+import requests
+import json
 
 class GIndex(LoginRequiredMixin,TemplateView):
 
@@ -17,6 +19,8 @@ class GIndex(LoginRequiredMixin,TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'index' 
+        context["page_name"] = 'Dashboard' 
+        context["corona_summary"] = get_coronacasesummary()
         return context
 
 class GDetailSetting(DetailView):
@@ -27,6 +31,7 @@ class GDetailSetting(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'settings' 
+        context["page_name"] = 'Website Setting' 
         return context
 
 class GUpdateSetting(SuccessMessageMixin,UpdateView):
@@ -45,5 +50,20 @@ class GUpdateSetting(SuccessMessageMixin,UpdateView):
     def get_success_url(self, *args, **kwargs):
         return '/c-admin/settings/'
     
-    
+
+def get_coronacasesummary():
+    try:
+        url = "https://corona.askbhunte.com/api/v1/data/nepal"
+
+        payload={}
+        headers = {
+        'Content-Type': 'application/json'
+        }
+
+        res = requests.request("GET", url, headers=headers, data=payload)
+        response = json.loads(res.text)
+    except:
+        response = {"tested_positive":"N/A","tested_total":"N/A","recovered":"N/A","deaths":"N/A"}
+    return response
+
     

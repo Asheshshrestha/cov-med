@@ -135,99 +135,27 @@
                                             <th>Total Deaths</th>
                                             <th>Total Recovered</th>
                                             <th>Active Cases</th>
-                                            <th>Critical</th>
+                                            <th>Critical Cases</th>
                                         </tr>
+                                        {% if cases %}
+
+                                        {% for case in cases%}
                                         <tr>
-    
-                                            <td>Whole World</td>
-                                            <td>4,217,357</td>
-                                            <td>+39,203 284</td>
-                                            <td>+1,000</td>
-                                            <td>284,734</td>
-                                            <td>1,506,479</td>
-                                            <td>2,426,144</td>
-                                            <td>47,060</td>
+                                            <td>{{ case.country|default:"N/A" }}<img src="{{ case.countryInfo.flag}}" height=20 class="pl-2"/></td>
+                                            <td>{{ case.totalCases|default:"N/A" }}</td>
+                                            <td>{{ case.newCases|default:"N/A" }}</td>
+                                            <td>{{ case.newDeaths|default:"N/A" }}</td>
+                                            <td>{{ case.totalDeaths|default:"N/A" }}</td>
+                                            <td>{{ case.totalRecovered|default:"N/A" }}</td>
+                                            <td>{{ case.activeCases|default:"N/A" }}</td>
+                                            <td>{{ case.criticalCases|default:"N/A" }}</td>
+                                            
                                         </tr>
-                                        <tr>
-                                            <td>USA</td>
-                                            <td>1,369,943</td>
-                                            <td>+2,305</td>
-                                            <td>+859</td>
-                                            <td>80,846</td>
-                                            <td>256,345</td>
-                                            <td>1,032,752</td>
-                                            <td>16,514</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Spain</td>
-                                            <td>268,143 </td>
-                                            <td>268,143 </td>
-                                            <td>+124</td>
-                                            <td>26,744</td>
-                                            <td>177,846</td>
-                                            <td>63,553</td>
-                                            <td>1,650</td>
-                                        </tr>
-                                        <tr>
-                                            <td>UK</td>
-                                            <td>223,060</td>
-                                            <td>+3,877</td>
-                                            <td>+210</td>
-                                            <td>+210</td>
-                                            <td>11,264</td>
-                                            <td>190,651</td>
-                                            <td>1,559</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Russia</td>
-                                            <td>221,344</td>
-                                            <td>+11,656</td>
-                                            <td>+94</td>
-                                            <td>2,009</td>
-                                            <td>39,801</td>
-                                            <td>179,534</td>
-                                            <td>2,300</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Italy</td>
-                                            <td>219,070</td>
-                                            <td>+9,656</td>
-                                            <td>1,060</td>
-                                            <td>30,560</td>
-                                            <td>105,186</td>
-                                            <td>83,324</td>
-                                            <td>1,027</td>
-                                        </tr>
-                                        <tr>
-                                            <td>France</td>
-                                            <td>194,392</td>
-                                            <td>+8,203</td>
-                                            <td>932</td>
-                                            <td>27,734</td>
-                                            <td>97,102</td>
-                                            <td>81,324</td>
-                                            <td>952</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Germany</td>
-                                            <td>171,999</td>
-                                            <td>+120</td>
-                                            <td>263</td>
-                                            <td>7,569</td>
-                                            <td>145,600</td>
-                                            <td>18,830</td>
-                                            <td>1,581</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brazil</td>
-                                            <td>163,510</td>
-                                            <td>+811</td>
-                                            <td>+84</td>
-                                            <td>11,207</td>
-                                            <td>64,957</td>
-                                            <td>87,346</td>
-                                            <td>8,318</td>
-                                        </tr>
+                                        {% endfor %}
+
+                                        {% endif %}
+                                        
+                                        
                                     </table>
                                 </div>
                             </div>

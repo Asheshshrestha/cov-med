@@ -23,7 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('c-admin/',include('apps.admin_panel.urls')),
     path('accounts/',include('apps.accounts.urls')),
-    path('test/',include('apps.test.urls')),
     path('demo/',include('modules.front_demo.urls')),
     path('appointment/',include('apps.appointment.urls')),
     path('',include('modules.home_page.urls')),

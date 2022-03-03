@@ -7,6 +7,8 @@ from django.urls.base import reverse_lazy
 from django.shortcuts import HttpResponse, HttpResponseRedirect, get_object_or_404, redirect, render
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+import requests
+import json
 
 from apps.vaccinecenter.models import CoronaVaccineCenter
 from apps.vaccinecenter.forms import CoronaVaccineCenterFrom
@@ -73,3 +75,31 @@ class DeleteCoronaVaccineCenter(SuccessMessageMixin,DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.warning(self.request, self.success_message)
         return super(DeleteCoronaVaccineCenter, self).delete(request, *args, **kwargs)
+
+class CovidStatusIndex(LoginRequiredMixin,TemplateView):
+
+    template_name = 'admin/c-panel/pages/coronacase/index.html'
+  
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["nav_link"] = 'covidcare' 
+        context["page_name"] = 'Covid Case Today' 
+        context["cases"] = self.get_corona_case_today()
+        return context
+    
+    def get_corona_case_today(self):
+        url = "https://corona.askbhunte.com/api/v1/data/world"
+        try:
+            payload={}
+            headers = {
+            'Content-Type': 'application/json'
+            }
+
+            response = requests.request("GET", url, headers=headers, data=payload)
+
+            cases = json.loads(response.text)
+        except:
+            cases = []
+        
+        return cases
+
