@@ -128,6 +128,7 @@
                                 <div class="case-table">
                                     <table class="table table-bordered ">
                                         <tr>
+                                            <th>#</th>
                                             <th>Country</th>
                                             <th>Coronavirus Cases</th>
                                             <th>New Cases</th>
@@ -141,6 +142,7 @@
 
                                         {% for case in cases%}
                                         <tr>
+                                            <td>{{forloop.counter}}</td>
                                             <td>{{ case.country|default:"N/A" }}<img src="{{ case.countryInfo.flag}}" height=20 class="pl-2"/></td>
                                             <td>{{ case.totalCases|default:"N/A" }}</td>
                                             <td>{{ case.newCases|default:"N/A" }}</td>
@@ -167,7 +169,7 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <div class="btn-bar">
-                            <a href="#" class="">Watch Full Stats</a>
+                            <a href="{% url 'coronacases' %}" class="">Watch Full Stats</a>
                         </div>
                     </div>
                 </div>
@@ -351,7 +353,26 @@
                         </div>
     
                     </div>
+
+                        {% for service in services %}
                     <div class="col-lg-4 col-md-6">
+                        <div class="ser-inner">
+                            <div class="number-ser">
+                                {% autoescape off %}
+                                {{service.service_icon}}
+                                {% endautoescape %}
+                                
+    
+                                <h5>0{{forloop.counter}}</h5>
+                            </div>
+                            <h3>{{service.service_name}}</h3>
+                            <p>{{service.service_desc}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    
+                    {% comment %} <div class="col-lg-4 col-md-6">
                         <div class="ser-inner">
                             <div class="number-ser">
                                 <i class="flaticon-pill"></i>
@@ -412,13 +433,14 @@
                             <h3>Diagnostic</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
     
                 </div>
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <div class="btn-bar">
-                            <a href="our-service.html" class="">Browse All Services</a>
+                            <button href="#" id="service-load-morebtn" class="">Browse All Services</button>
+                            <button href="#" id="service-hide-morebtn" class="" style="display:none">Hide Services</button>
                         </div>
                     </div>
                 </div>
@@ -560,3 +582,48 @@
             Blog Part HTML End
         =======================-->
 {% endblock page_content %}
+
+{% block myscripts %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script>
+    $('#service-load-morebtn').off('click').on('click', function(){
+
+        $.ajax(
+            {
+                type:"GET",
+                url: {% url 'all_services'%},
+                data:{
+                },
+                success: function( data ) 
+                {
+                    var html = `<div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
+                                <div class="services-inner text-center">
+                                    <div class="heading">
+                                        <h2>Our Services</h2>
+                                    </div>
+            
+                                </div>
+            
+                            </div>`;
+                    $.each(data.data,function(index,item){
+                        html += `<div class="col-lg-4 col-md-6">
+                            <div class="ser-inner">
+                                <div class="number-ser">
+                                    ${item.service_icon}
+                                    <h5>0${++index}</h5>
+                                </div>
+                                <h3>${item.service_name}</h3>
+                                <p>${item.service_desc}</p>
+                            </div>
+                        </div> `;
+                    });
+                    html+= `</div></div>`;
+                    $('#services').html(html);
+                }
+             })
+    });
+</script>
+{% endblock myscripts %}

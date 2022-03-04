@@ -7,9 +7,12 @@ from django.urls.base import reverse_lazy
 from django.shortcuts import HttpResponse, HttpResponseRedirect, get_object_or_404, redirect, render
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from django.http import JsonResponse
+from django.http import HttpResponse
+
 import requests
 import json
-
+from django.forms.models import model_to_dict
 
 from apps.admin_panel.models import WebsiteSettingModel
 from apps.services.forms import HospitalServiceModuleForm
@@ -25,9 +28,11 @@ class HomeIndex(TemplateView):
     def get_context_data(self, **kwargs):
         
         doctors = BasicUserProfile.objects.filter(is_doctor = True)
+        services = HospitalServiceModule.objects.filter(is_ineffect = True)[:6]
         context = super().get_context_data(**kwargs)
         context["doctors"] = doctors
         context["cases"] = self.get_corona_case_today()
+        context['services'] = services
         return context
     def get_corona_case_today(self):
         url = "https://corona.askbhunte.com/api/v1/data/world"
@@ -44,3 +49,33 @@ class HomeIndex(TemplateView):
             cases = []
         
         return cases
+
+class CoronaCasesIndex(TemplateView):
+    template_name = 'frontend/pages/corona_stats/country_list.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["cases"] = self.get_corona_case_today()
+        return context
+    def get_corona_case_today(self):
+        url = "https://corona.askbhunte.com/api/v1/data/world"
+        try:
+            payload={}
+            headers = {
+            'Content-Type': 'application/json'
+            }
+
+            response = requests.request("GET", url, headers=headers, data=payload)
+
+            cases = json.loads(response.text)[1:]
+        except:
+            cases = []
+        
+        return cases
+
+def AllServicesView(request):
+    if request.method == 'GET':
+        services = HospitalServiceModule.objects.filter(is_ineffect = True).values()
+        return JsonResponse({'data':list(services)})
+    else:
+        return JsonResponse({'error':'Unknown error occured'},mimetype='application/json')

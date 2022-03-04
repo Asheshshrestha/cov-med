@@ -1,0 +1,117 @@
+{% extends 'frontend/pages/_layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block page_content %}
+
+<section id="home" class="home section mt-2 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="container">
+                    <div class="order-model">
+                        <div class="log-sign" role="document">
+                            <div class="modal-content m-4">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel15"></h5>
+                                    <span class="download-close" data-dismiss="modal" aria-label="Close"><span></span></span>
+                                </div>
+                                <div id="letter5">
+                                    <div class="letter_inner">
+
+                                        <div class="heading color-b">
+                                            <h2>Corona Today Statistics</h2>
+                                        </div>
+                                        <div class="heading color-b">
+                                           <!-- Search form -->
+                                           
+                                              
+                                        </div>
+                                        <div class="model-project-details">
+                                            <div class="heading color-b">
+                                                <div class="tab-content">
+                                                    <div class="container">
+                                                        <div class=" row">
+                                                            <div class="col-4">
+                                                                <input class="form-control" onkeyup="myFunction()" id="txtSearch" type="text" placeholder="Search" aria-label="Search"> 
+                                                            </div>
+                                                            
+                                                            <div class="btn-bar col d-flex justify-content-end text-center">
+                                                                <a href="{% url 'index_home' %}" class="">Back To Home</a>
+                                                            </div>
+                                                        </div>
+                                                        <table class="table table-hover" id="corona_table">
+                                                            <thead>
+                                                              <tr>
+                                                                <th scope="col">Country</th>
+                                                                <th scope="col">Coronavirus Cases</th>
+                                                                <th scope="col">New Cases</th>
+                                                                <th scope="col">New Death</th>
+                                                                <th scope="col">Total Deathss</th>
+                                                                <th scope="col">Total Recovered</th>
+                                                                <th scope="col">Active Cases</th>
+                                                                <th scope="col">Critical Cases</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {% if cases %}
+                                                                {% for case in cases %}
+                                                                <tr class="odd gradeX">
+                                                                    <td class="d-flex justify-content-between">{{ case.country|default:"N/A" }} <img src="{{ case.countryInfo.flag}}" height=20 class="pl-2"/></td>
+                                                                    <td>{{ case.totalCases|default:"N/A" }}</td>
+                                                                    <td>{{ case.newCases|default:"N/A" }}</td>
+                                                                    <td>{{ case.newDeaths|default:"N/A" }}</td>
+                                                                    <td>{{ case.totalDeaths|default:"N/A" }}</td>
+                                                                    <td>{{ case.totalRecovered|default:"N/A" }}</td>
+                                                                    <td>{{ case.activeCases|default:"N/A" }}</td>
+                                                                    <td>{{ case.criticalCases|default:"N/A" }}</td>
+                                                                </tr>
+                                                                {% endfor %}
+                                                                {% else %}
+                                                                <tr>No data to show!</tr>
+                                                                {% endif %}
+
+                                                                
+                                                             
+                                                             
+                                                            </tbody>
+                                                          </table>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+  {% endblock page_content%}
+
+  {% block myscripts %}
+  <script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("txtSearch");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("corona_table");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }       
+        }
+      }
+  </script>
+  {% endblock myscripts%}
