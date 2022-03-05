@@ -274,7 +274,7 @@ class ProfileViewFront(View):
             user.last_name = last_name
             user.save()
 
-            user_profile = BasicUserProfile.objects.get(user=request.user)
+            user_profile = BasicUserProfile.objects.get(reffer_user=request.user)
             user_profile.age = age
             user_profile.dateofbirth = dateofbirth
             user_profile.gender = gender
