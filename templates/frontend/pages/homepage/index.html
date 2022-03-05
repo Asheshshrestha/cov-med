@@ -180,7 +180,37 @@
         <!--=======================
         Corona Virus Case Part HTML End
         ========================-->
+    <!--==================
+        CoronaVirus Map view Part HTML Start
+        ===================-->
+        <style>
+            
+            #map {
+               height: 520px;
+                width: 100%;
+            }
+        </style>
+        <section id="symptoms" class="symptoms section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="symptoms-inner text-center">
+                            <div class="heading">
+                                <h2>CoronaVirus Map</h2>
+                            </div>
     
+                        </div>
+    
+                    </div>
+                    <div id="map"></div>
+    
+                </div>
+            </div>
+        </section>
+    
+        <!--==================
+        CoronaVirus Map view Part HTML End
+        ===============-->
         <!--==================
         CoronaVirus Symptoms Part HTML Start
         ===================-->
@@ -343,7 +373,7 @@
     
         <section id="services" class="services section">
             <div class="container">
-                <div class="row">
+                <div class="row" id="service_list">
                     <div class="col-lg-8 offset-lg-2">
                         <div class="services-inner text-center">
                             <div class="heading">
@@ -363,7 +393,7 @@
                                 {% endautoescape %}
                                 
     
-                                <h5>0{{forloop.counter}}</h5>
+                                <h5>{% if forloop.counter < 9 %}0{% endif %}{{forloop.counter}}</h5>
                             </div>
                             <h3>{{service.service_name}}</h3>
                             <p>{{service.service_desc}}</p>
@@ -585,7 +615,144 @@
 
 {% block myscripts %}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="{% static 'front/mapstatic/javascript/d3.v3.min.js' %}"></script>
+    <script src="{% static 'front/mapstatic/javascript/topojson.v1.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'front/mapstatic/css/leaflet.css' %}" />
+    <script src="{% static 'front/mapstatic/javascript/leaflet.js' %}"></script>
+    <script>
+        function getCoronacase(f_id) {
+            var corona_data = [];
+            $.getJSON('https://data.askbhunte.com/api/v1/covid/summary', function(data) {
+                corona_data = data;
+                $.each(corona_data.municipality.cases,
 
+                    function(i, v) {
+
+                        if (v.municipality === f_id) {
+                            return v.count;
+                        }
+                    });
+            });
+
+        }
+        var map = L.map('map').setView([28.1999999, 84.100140], 7);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 8,
+            minZoom: 6,
+            
+            id: 'mapbox.light'
+        }).addTo(map);
+
+
+
+        locallevel = L.geoJson(null, {
+            style: function(feature) {
+                return feature.properties && feature.properties.style;
+            },
+
+            onEachFeature: handleLayer,
+
+        }).addTo(map)
+
+        district = L.geoJson(null, {
+            style: function(feature) {
+                return {
+                    weight: 2,
+                    color: 'black',
+                    fillColor: 'none'
+                }
+            },
+        })
+
+        province = L.geoJson(null, {
+            style: function(feature) {
+                return {
+                    weight: 2,
+                    color: 'red',
+                    fillColor: 'none'
+                }
+            },
+
+        })
+
+        d3.json("{% static 'front/mapstatic/gis-data/municipality.topojson' %}", function(error, data) {
+            var neighborhoods = topojson.feature(data, data.objects.collection)
+            locallevel.addData(neighborhoods);
+        })
+
+
+        d3.json("{% static 'front/mapstatic/gis-data/district.topojson' %}", function(error, data) {
+            var neighborhoods = topojson.feature(data, data.objects.collection)
+            district.addData(neighborhoods);
+        })
+
+        d3.json("{% static 'front/mapstatic/gis-data/province.topojson' %}", function(error, data) {
+            var neighborhoods = topojson.feature(data, data.objects.collection)
+            province.addData(neighborhoods);
+        })
+
+
+        var districtLayer = {
+            "District": district,
+        };
+
+        var provinceLayer = {
+            "Province": province,
+        };
+
+        L.control.layers(districtLayer, provinceLayer).addTo(map);
+
+
+
+        function handleLayer(feature, layer) {
+            layer.bindLabel(
+                'ID :' + feature.properties.F_ID + '<br>' +
+                'Total Case:' + getCoronacase(feature.properties.F_ID) + '<br>' +
+                'New Case:' + getCoronacase(feature.properties.F_ID) + '<br>' +
+                'New Deaths:' + getCoronacase(feature.properties.F_ID) + '<br>' +
+                'Total Recovered:' + getCoronacase(feature.properties.F_ID) + '<br>' +
+                'Active Case:' + getCoronacase(feature.properties.F_ID) + '<br>' +
+                'Critical Case:' + getCoronacase(feature.properties.F_ID) + '<br>' +
+                'Municipality Name : ' + feature.properties.NAME + '<br>' +
+                'Municipality Level : ' + feature.properties.LEVEL + '<br>' +
+                'District : ' + feature.properties.DISTRICT + '<br>', {
+                    noHide: true
+                })
+
+            layer.setStyle({
+                fillColor: '#D5E3FF',
+                fillOpacity: 1,
+                color: '#555',
+                weight: 1,
+                opacity: 0.5,
+                zIndexOffset:999
+            });
+
+            layer.on({
+                mouseover: enterLayer,
+                mouseout: leaveLayer
+            });
+            
+        }
+
+
+        function enterLayer() {
+            this.bringToFront();
+            this.setStyle({
+                weight: 2,
+                opacity: 1
+            });
+        }
+
+
+        function leaveLayer() {
+            this.bringToBack();
+            this.setStyle({
+                weight: 1,
+                opacity: .5
+            });
+        }
+    </script>
 <script>
     $('#service-load-morebtn').off('click').on('click', function(){
 
@@ -597,8 +764,7 @@
                 },
                 success: function( data ) 
                 {
-                    var html = `<div class="container">
-                        <div class="row">
+                    var html = `
                             <div class="col-lg-8 offset-lg-2">
                                 <div class="services-inner text-center">
                                     <div class="heading">
@@ -620,10 +786,17 @@
                             </div>
                         </div> `;
                     });
-                    html+= `</div></div>`;
-                    $('#services').html(html);
+                    $('#service_list').html(html);
+                    $('#service-load-morebtn').hide();
+                    $('#service-hide-morebtn').show();
                 }
              })
+    });
+    $('#service-hide-morebtn').off('click').on('click',function(){
+
+        $('#service_list').children('div').hide().filter(':lt(7)').show();
+        $('#service-load-morebtn').show();
+        $('#service-hide-morebtn').hide();
     });
 </script>
 {% endblock myscripts %}
