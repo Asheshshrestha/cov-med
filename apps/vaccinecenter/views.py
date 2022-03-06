@@ -97,7 +97,7 @@ class CovidStatusIndex(LoginRequiredMixin,TemplateView):
 
             response = requests.request("GET", url, headers=headers, data=payload)
 
-            cases = json.loads(response.text)
+            cases = json.loads(response.text)[1:]
         except:
             cases = []
         
