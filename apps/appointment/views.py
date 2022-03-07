@@ -7,11 +7,13 @@ from apps.accounts.models import BasicUserProfile
 from apps.appointment.models import AppointmentModel
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.utils.timezone import datetime #important if using timezones
+from django.contrib.auth.mixins import LoginRequiredMixin
+import datetime #important if using timezones
+from django.db.models import Q
 
 # Create your views here.
 
-class AddAppointment(View):
+class AddAppointment(LoginRequiredMixin,View):
 
     template_name = 'frontend/pages/appointment/appointment.html'
     
@@ -75,9 +77,9 @@ class MyAppointmentListView(ListView):
 
     model = AppointmentModel
     def get_queryset(self,*args,**kwargs):
-
+        current_datetime = datetime.datetime.today()
         qs = super(MyAppointmentListView,self).get_queryset(*args,**kwargs)
-        qs = qs.filter(reffer_user__id =self. request.user.id).order_by("-id")
+        qs = qs.filter(Q(reffer_user__id =self. request.user.id) & Q(appointment_date__gte = current_datetime)).order_by("-id")
         return qs
 
     def get_context_data(self, **kwargs):

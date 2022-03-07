@@ -12,7 +12,7 @@ class CoronaVaccineCenter(models.Model):
                         ('Sudurpashchim','Sudurpashchim')]
     VACCINE_TYPE_CHOICES = [('First','First'),
                             ('Second','Second'),
-                            ('Buster','Buster'),
+                            ('Booster','Booster'),
                             ('Other','Other')]
     SERVICE_TYPE = [('First Come First','First Come First'),
                     ('Anytime Sevice','Anytime Service'),

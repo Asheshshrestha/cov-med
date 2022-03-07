@@ -18,6 +18,10 @@ from apps.admin_panel.models import WebsiteSettingModel
 from apps.services.forms import HospitalServiceModuleForm
 from apps.services.models import HospitalServiceModule
 from apps.accounts.models import BasicUserProfile
+from apps.vaccinecenter.models import CoronaVaccineCenter
+from django.db.models import Q
+
+import datetime
 # Create your views here.
 
 # Create your views here.
@@ -26,11 +30,14 @@ class HomeIndex(TemplateView):
     template_name = 'frontend/pages/homepage/index.html'
     
     def get_context_data(self, **kwargs):
-        
+        current_datetime = datetime.datetime.today()
+        print(current_datetime)
         doctors = BasicUserProfile.objects.filter(is_doctor = True)
+        centers = CoronaVaccineCenter.objects.filter(Q(provide_to__gte=current_datetime))
         services = HospitalServiceModule.objects.filter(is_ineffect = True)[:6]
         context = super().get_context_data(**kwargs)
         context["doctors"] = doctors
+        context['centers'] = centers
         context["cases"] = self.get_corona_case_today()
         context['services'] = services
         return context

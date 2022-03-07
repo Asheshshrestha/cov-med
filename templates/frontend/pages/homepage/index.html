@@ -400,68 +400,6 @@
                     {% endfor %}
                     
                     
-                    {% comment %} <div class="col-lg-4 col-md-6">
-                        <div class="ser-inner">
-                            <div class="number-ser">
-                                <i class="flaticon-pill"></i>
-                                <h5>01</h5>
-                            </div>
-                            <h3>Pharmacology</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="ser-inner">
-                            <div class="number-ser">
-                                <i class="flaticon-wellness"></i>
-    
-                                <h5>02</h5>
-                            </div>
-                            <h3>Heart Care</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="ser-inner">
-                            <div class="number-ser">
-                                <i class="flaticon-water-donation"></i>
-    
-                                <h5>03</h5>
-                            </div>
-                            <h3>Ophthalmology</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="ser-inner">
-                            <div class="number-ser">
-                                <i class="flaticon-microscope"></i>
-                                <h5>04</h5>
-                            </div>
-                            <h3>Research</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="ser-inner">
-                            <div class="number-ser">
-                                <i class="flaticon-dentist"></i>
-                                <h5>05</h5>
-                            </div>
-                            <h3>Tooth Care</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="ser-inner">
-                            <div class="number-ser">
-                                <i class="flaticon-heart-rate-monitor"></i>
-                                <h5>06</h5>
-                            </div>
-                            <h3>Diagnostic</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
-                        </div>
-                    </div> {% endcomment %}
     
                 </div>
                 <div class="row">
@@ -522,7 +460,81 @@
         <!--======================
          Connect Doctors Part HTML End
         =======================-->
+     <!--======================
+        Corona Virus Case Part HTML Start
+        =======================-->
+        <section id="vaccinecenter" class="vaccinecenter section mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="arraw test">
+                            <i class="fas fa-long-arrow-alt-down"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <div class="w-heading">
+                            <h2>Vaccine Center</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="case-content ">
+                            <div class="case-box">
+                                <div class="case-table">
+                                    <table class="table table-bordered ">
+                                        <tr>
+                                            <th>Covid Center</th>
+                                            <th>Location</th>
+                                            <th>Vaccine Name</th>
+                                            <th>Type</th>
+                                            <th>Providing Date</th>
+                                            <th>Contact</th>
+                                            <th>Direction</th>
+                                        </tr>
+                                       
+                                        {% if centers %}
+                                        {% for center in centers %}
+                                        <tr>
+                                            <td>{{center.center_name}}</td>
+                                            <td>{{center.provience}}>{{center.district}}>{{center.location}}</td>
+                                            <td>{{center.vaccine_name}}</td>
+                                            <td>{{center.vaccine_type |default:"N/A"}}</td>
+                                            <td>
+                                                {% if center.provide_from == center.provide_to%}
+                                                {{center.provide_from}}
+                                                {% else %}
+                                                {{center.provide_from}} - {{center.provide_to}}
+                                                {% endif %}
+                                            </td>
+                                            <td>{{center.help_phone_no |default:"N/A"}}</td>
+                                            <td><a href="{{center.map_url|default:"#"}}" class=""><i class="fa fa-location-arrow"></i></a></td>
+                                        </tr>
+                                        {% endfor %}
+                                        {% else %}
+                                        <tr>
+                                            <td colspan="7">
+                                                No data
+                                            </td>
+                                           
+                                        </tr>
+                                        {% endif %}
+                                        
+                                    </table>
+                                </div>
+                            </div>
     
+    
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </section>
+    
+        <!--=======================
+        Corona Virus Case Part HTML End
+        ========================-->
     
         <!--======================
             Latest Updates Part HTML Start

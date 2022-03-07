@@ -51,7 +51,8 @@
                                                                   </tr>
                                                                 {% endfor %}
                                                                 {% else %}
-                                                                <tr>No data to show!</tr>
+                                                                <tr>
+                                                                    <td colspan="5">No data to show!</td></tr>
                                                                 {% endif %}
 
                                                                 
@@ -60,7 +61,16 @@
                                                             </tbody>
                                                           </table>
                                                     </div>
-                                                    
+                                                    <div class="row">
+
+                                                        <div class="col-md-12">
+                                                            <div class="form-btn test">
+                                                                <div class="btn-bar">
+                                                                    <a href="{% url 'index_home' %}" class="">Back To Home</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
