@@ -47,11 +47,6 @@ class SignupForm(forms.ModelForm):
         widget = FilteredSelectMultiple('Groups',is_stacked=False),
         required=False
     )
-    def __init__(self, *args, **kwargs):
-        super(SignupForm, self).__init__(*args, **kwargs)
-        self.fields['is_active'].initial = False
-        self.fields['password'].initial = 'Test@123'
-
     class Media:
         css = {'all': ('/static/admin/css/widgets.css',), }
         js = ('/admin/jsi18n/',)
@@ -59,7 +54,6 @@ class SignupForm(forms.ModelForm):
 
         model = User
         fields = ('username',
-                    'password',
                     'groups',
                     'is_superuser',
                     'first_name',

@@ -6,25 +6,45 @@ from django.views.generic import TemplateView,UpdateView,DetailView
 from apps.admin_panel.models import WebsiteSettingModel
 from apps.admin_panel.forms import WebsiteSettingForm
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin,UserPassesTestMixin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
+from apps.hospital.models import HospitalModel
+from gronckle_enginee import settings
+from apps.accounts.models import BasicUserProfile
+from apps.appointment.models import AppointmentModel
+from apps.services.models import HospitalServiceModule
 import requests
 import json
 
-class GIndex(LoginRequiredMixin,TemplateView):
+class GIndex(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
 
     template_name = 'admin/c-panel/pages/index/index.html'
-  
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+        return self.request.user.is_staff or self.request.user.has_perm('admin_panel.view_dashboard')
     def get_context_data(self, **kwargs):
+        doctors_count = len(BasicUserProfile.objects.filter(is_doctor = True))
+        hospital_count = len(HospitalModel.objects.filter(in_service=True))
+        appointment_count = len(AppointmentModel.objects.all())
+        service_count = len(HospitalServiceModule.objects.filter(is_ineffect=True))
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'index' 
         context["page_name"] = 'Dashboard' 
+        context["doctor_count"] = doctors_count
+        context["hospital_count"] = hospital_count
+        context["appointment_count"] = appointment_count
+        context["service_count"] = service_count
         context["corona_summary"] = get_coronacasesummary()
         return context
 
-class GDetailSetting(DetailView):
+class GDetailSetting(PermissionRequiredMixin,DetailView):
     template_name = 'admin/c-panel/pages/settings/sitesetting.html'
+
+    def has_permission(self):
+        return self.request.user.is_superuser
+
     def get_object(self):
         return WebsiteSettingModel.objects.first()
 
@@ -34,12 +54,13 @@ class GDetailSetting(DetailView):
         context["page_name"] = 'Website Setting' 
         return context
 
-class GUpdateSetting(SuccessMessageMixin,UpdateView):
+class GUpdateSetting(SuccessMessageMixin,PermissionRequiredMixin,UpdateView):
     model = WebsiteSettingModel
     form_class = WebsiteSettingForm
     template_name = 'admin/c-panel/pages/settings/update_setting.html'
     success_message = "Page Setting Updated Successfully."
-    
+    def has_permission(self):
+        return self.request.user.is_superuser
 
     def get_object(self, *args, **kwargs):
         return WebsiteSettingModel.objects.first()

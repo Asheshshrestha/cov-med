@@ -55,5 +55,5 @@ class BasicUserProfile(models.Model):
     doctor_licence = models.FileField(upload_to='doctor/licence_image',blank=True,null=True)
     is_doctor = models.BooleanField(default=False)
     appointment_per_day = models.IntegerField(default=50,null=True,blank=True)
-    def __str__(self):
-        return self.reffer_user.username
+    # def __str__(self):
+    #     return self.reffer_user.username

@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
 
 <link href="{% static 'front/coviddata/css/style.css'%}" rel="stylesheet">
+<link href="{% static 'admin/c-panel/css/owl.carousel.css'%}" rel="stylesheet">
+<link href="{% static 'admin/c-panel/css/owl.theme.css'%}" rel="stylesheet">
 {% endblock myhead%}
 {% block page_content %}
 <!--=========================
@@ -11,7 +13,7 @@
         =======================-->
         <section class="banner-area" id="banner">
             <div class="slider">
-                <div class=" slide animated" data-animation-in="zoomInImage">
+                <div class="slide animated" data-animation-in="zoomInImage">
                     <div class="container">
                         <div class="row full-screen">
                             <div class="col-md-6 col-lg-5 banner-l">
@@ -416,6 +418,50 @@
         <!--==================
         Our Services Part HTML End
         ===============-->
+        <!--========================
+         Connect Doctors Part HTML Start
+        ==========================-->
+        <section id="hospitals" class="doctors section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="doctors-inner text-center">
+                            <div class="heading">
+                                <h2>Our Hospitals</h2>
+                            </div>
+    
+                        </div>
+    
+                    </div>
+                </div>
+    
+                <div class="row doctor-slick">
+                    {% for hospital in hospitals %}
+                    <div class="col-md-4">
+                        <div class="doctors-inner">
+                            <div class="doc-img text-center">
+                                <img src="{{hospital.hospital_image.url}}" class="img-fluid" alt="Symptom">
+                            </div>
+                            <div class="doc-txt text-center">
+                                <h4>Dr. {{hospital.hospital_name}}</h4>
+                                <p class="doc-border">{{hospital.hospital_provience}} {{hospital.hospital_city}}</p>
+                                <p>Phone: {{hospital.reception_phone}}/{{hospital.emergency_phone}}</p>
+                                <div class="btn-bar">
+                                    <a href="#" class="" >About Hospital</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+    
+                </div>
+            </div>
+        </section>
+    
+        <!--======================
+         Connect Doctors Part HTML End
+        =======================-->
         <!--========================
          Connect Doctors Part HTML Start
         ==========================-->

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView,UpdateView,DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls.base import reverse_lazy
@@ -12,11 +12,17 @@ import json
 
 from apps.vaccinecenter.models import CoronaVaccineCenter
 from apps.vaccinecenter.forms import CoronaVaccineCenterFrom
+from gronckle_enginee import settings
 # Create your views here.
-class CoronaVaccineCenterIndex(LoginRequiredMixin,ListView):
+class CoronaVaccineCenterIndex(LoginRequiredMixin,PermissionRequiredMixin,ListView):
 
     template_name = 'admin/c-panel/pages/coronavaccinecenter/index.html'
     model = CoronaVaccineCenter
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+         return self.request.user.is_superuser
+         
     def get_queryset(self,*args,**kwargs):
 
         qs = super(CoronaVaccineCenterIndex,self).get_queryset(*args,**kwargs)
@@ -28,19 +34,23 @@ class CoronaVaccineCenterIndex(LoginRequiredMixin,ListView):
         context["page_name"] = 'Vaccine Center Services' 
         return context
 
-class AddCoronaVaccineCenter(SuccessMessageMixin,CreateView):
+class AddCoronaVaccineCenter(SuccessMessageMixin,PermissionRequiredMixin,CreateView):
     form_class = CoronaVaccineCenterFrom
     success_url = reverse_lazy('vaccinecenter_index')
     template_name = 'admin/c-panel/pages/coronavaccinecenter/manage.html'
     success_message = "Vaccine Center Added Successfully ."
-    
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+         return self.request.user.is_superuser
+         
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'covidcare' 
         context["page_name"] = 'Vaccine Center Services' 
         return context
 
-class UpdateCoronaVaccineCenter(SuccessMessageMixin,UpdateView):
+class UpdateCoronaVaccineCenter(SuccessMessageMixin,PermissionRequiredMixin,UpdateView):
     model = CoronaVaccineCenter
     form_class = CoronaVaccineCenterFrom
     template_name = 'admin/c-panel/pages/coronavaccinecenter/manage.html'
@@ -48,19 +58,27 @@ class UpdateCoronaVaccineCenter(SuccessMessageMixin,UpdateView):
     pk_url_kwarg = 'pk'
 
     success_url = reverse_lazy('vaccinecenter_index')
-    
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+         return self.request.user.is_superuser
+         
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'covidcare' 
         context["page_name"] = 'Vaccine Center Services' 
         return context
 
-class DeleteCoronaVaccineCenter(SuccessMessageMixin,DeleteView):
+class DeleteCoronaVaccineCenter(SuccessMessageMixin,PermissionRequiredMixin,DeleteView):
     template_name = 'admin/c-panel/pages/coronavaccinecenter/delete.html'
     success_message = "Vaccine Center Delete Successfully."
     pk_url_kwarg = 'pk'
     success_url = reverse_lazy('vaccinecenter_index')
-    
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+         return self.request.user.is_superuser
+         
     def get_object(self):
         id_ = self.kwargs.get("pk")
         return get_object_or_404(CoronaVaccineCenter,id=id_)
@@ -76,10 +94,14 @@ class DeleteCoronaVaccineCenter(SuccessMessageMixin,DeleteView):
         messages.warning(self.request, self.success_message)
         return super(DeleteCoronaVaccineCenter, self).delete(request, *args, **kwargs)
 
-class CovidStatusIndex(LoginRequiredMixin,TemplateView):
+class CovidStatusIndex(LoginRequiredMixin,PermissionRequiredMixin,TemplateView):
 
     template_name = 'admin/c-panel/pages/coronacase/index.html'
-  
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+         return self.request.user.is_staff
+         
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'covidcare' 

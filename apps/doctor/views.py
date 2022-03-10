@@ -22,6 +22,7 @@ from apps.accounts.forms import (SignupForm,
                                 UserSignupForm,UserUpdateForm,
                                 PasswordResetForm)
 from django.contrib.auth.hashers import check_password
+from django.core.files import File
 from apps.accounts.models import BasicUserProfile
 from django.contrib.auth.models import Group
 import string    
@@ -31,12 +32,18 @@ from apps.doctor.forms import DoctorSignupForm,DoctorUpdateForm
 from apps.hospital.models import HospitalModel
 from django.core.mail import send_mail
 from gronckle_enginee.settings import EMAIL_HOST_USER
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 
 
-class DoctorListView(ListView):
+
+class DoctorListView(PermissionRequiredMixin,ListView):
     template_name = 'admin/c-panel/pages/doctor/index.html'
 
     model = BasicUserProfile
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+         return self.request.user.is_superuser
     def get_queryset(self,*args,**kwargs):
 
         qs = super(DoctorListView,self).get_queryset(*args,**kwargs)
@@ -50,10 +57,15 @@ class DoctorListView(ListView):
         return context
 
 
-class AddDoctor(View):
+class AddDoctor(PermissionRequiredMixin,View):
     
     template_name = 'admin/c-panel/pages/doctor/manage.html'
     
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+         return self.request.user.is_superuser
+
     def get(self,request,*args,**kwargs):
         form = DoctorSignupForm()
         return render(request,self.template_name,{'form':form,
@@ -85,6 +97,7 @@ class AddDoctor(View):
             highest_degree = form.cleaned_data.get('highest_degree')
             studied_in = form.cleaned_data.get('studied_in')
             doctor_licence = form.cleaned_data.get('doctor_licence')
+            doctor_regestriation_no = form.cleaned_data.get('doctor_regestriation_no')
             random_password = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 12)) 
             if len(random_password) == 12:
                 new_user = User.objects.create_user(username,email,random_password)
@@ -114,6 +127,9 @@ class AddDoctor(View):
                                                 highest_degree = highest_degree,
                                                 studied_in = studied_in,
                                                 doctor_licence = doctor_licence,
+                                                doctor_regestriation_no=doctor_regestriation_no,
+                                                first_name = firs_name,
+                                                last_name = last_name,
                                                 is_doctor = True)
                 user_profile.save()
 
@@ -139,10 +155,14 @@ class AddDoctor(View):
             return render(request,self.template_name,{'form':form,
                                                         'nav_link':'medcore',
                                                         'page_name':'Doctor Management'})
-class UpdateDoctor(View):
+class UpdateDoctor(PermissionRequiredMixin,View):
     
     template_name = 'admin/c-panel/pages/doctor/update.html'
-    
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+         return self.request.user.is_superuser
+         
     def get(self,request,pk,*args,**kwargs):
         profile = BasicUserProfile.objects.get(id=pk)
         form = DoctorUpdateForm(instance= profile)
@@ -174,7 +194,7 @@ class UpdateDoctor(View):
             highest_degree = form.cleaned_data.get('highest_degree')
             studied_in = form.cleaned_data.get('studied_in')
             doctor_licence = form.cleaned_data.get('doctor_licence') 
-           
+            
             profile = BasicUserProfile.objects.get(id=pk)
             profile.first_name = firs_name
             profile.last_name = last_name
@@ -198,7 +218,7 @@ class UpdateDoctor(View):
             profile.studied_in = studied_in
             profile.doctor_licence = doctor_licence
             profile.save()
-
+            
             user = User.objects.get(id = profile.reffer_user.id)
             user.first_name = firs_name
             user.last_name = last_name
@@ -216,12 +236,16 @@ class UpdateDoctor(View):
                                                         'page_name':'Doctor Management'})
 
 
-class DeleteDoctor(SuccessMessageMixin,DeleteView):
+class DeleteDoctor(SuccessMessageMixin,PermissionRequiredMixin,DeleteView):
     template_name = 'admin/c-panel/pages/doctor/delete.html'
     success_message = "Doctor Delete Successfully."
     pk_url_kwarg = 'pk'
     success_url = reverse_lazy('doctor_index')
-    
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+         return self.request.user.is_superuser
+         
     def get_object(self):
         id_ = self.kwargs.get("pk")
         return get_object_or_404(BasicUserProfile,id=id_)

@@ -26,7 +26,7 @@
                         <tbody>
                             {% for doctor in object_list %}
                             <tr class="odd gradeX">
-                                <td>Dr. {{ doctor.reffer_user.get_full_name|default:"N/A" }}</td>
+                                <td>Dr. {{ doctor.reffer_user.get_full_name|default:"N/A" }} {{doctor.median_name|default:""}}</td>
                                 <td>{{ doctor.doctor_regestriation_no|default:"N/A" }}</td>
                                 <td>{{ doctor.hospital.hospital_name }}</td>
                                 <td>{{ doctor.highest_degree|default:"N/A" }}</td>

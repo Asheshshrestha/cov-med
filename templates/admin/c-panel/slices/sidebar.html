@@ -7,7 +7,7 @@
             <li>
                 <a {% if nav_link == 'index' %} class="active-menu" {% endif %} href="{% url 'index' %}"><i class="fas fa-fw fa-tachometer-alt"></i> Dashboard</a>
             </li>
-            
+            {% if request.user.is_superuser%}
             <li>
                 <a {% if nav_link == 'users' %} class="active-menu" {% endif %} href="#"><i class="fas fa-users-cog"></i></i>Users Management<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -20,15 +20,18 @@
                     
                 </ul>
             </li>
-            {% if perms.test.view_testmodel %}
+            {% endif %}
+            {% comment %} {% if perms.test.view_testmodel %}
             <li>
                 <a {% if nav_link == 'test' %} class="active-menu" {% endif %} href="#"><i class="fas fa-user-tag"></i>Test</a>
             </li>
 
-            {% endif %}
+            {% endif %} {% endcomment %}
+            {% if request.user.is_staff%}
             <li>
                 <a {% if nav_link == 'medcore' %} class="active-menu" {% endif %} href="#"><i class="fa fa-h-square"></i></i>Medic Management<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
+                    {% if request.user.is_superuser%}
                     <li>
                         <a href="{% url 'hospital_index' %}"><i class="fa fa-hospital"></i>Hospital</a>
                     </li>
@@ -41,28 +44,34 @@
                     <li>
                         <a href="{% url 'appointment_index' %}"><i class="fa fa-clipboard"></i>Appointment</a>
                     </li>
+                    {%endif%}
                     <li>
                         <a href="{% url 'doctor_appointment' %}"><i class="fa fa-clipboard"></i>My Appointment</a>
                     </li>
                     
                 </ul>
             </li>
+            {% endif %}
+            {% if request.user.is_staff %}
             <li>
                 <a {% if nav_link == 'covidcare' %} class="active-menu" {% endif %} href="#"><i class="fas fa-medkit"></i></i>Covid Management<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
+                    {% if request.user.is_superuser%}
                     <li>
                         <a href="{% url 'vaccinecenter_index' %}"><i class="fa fa-syringe"></i>Vaccine Center</a>
                     </li>
+                    {% endif %}
                     <li>
                         <a href="{% url 'covidlist_index' %}"><i class="fa fa-virus-covid"></i>Covid Case</a>
                     </li>
                     
                 </ul>
             </li>
+            {% endif %}
             
 
 
-            <li>
+            {% comment %} <li>
                 <a href="#"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
@@ -88,18 +97,20 @@
 
                     </li>
                 </ul>
-            </li>
+            </li> {% endcomment %}
+            {% if request.user.is_superuser%}
             <li>
                 <a {% if nav_link == 'settings' %} class="active-menu" {% endif %} href="#"><i class="fa fa-fw fa-cogs"></i>Settings<span class="fa arrow"></span></a>
                  <ul class="nav nav-second-level">
                     <li>
                         <a href="{% url 'setting'%}">Website Settings</a>
                     </li>
-                    <li>
+                    {% comment %} <li>
                         <a href="#">Profile Settings</a>
-                    </li>
+                    </li> {% endcomment %}
                 </ul>
             </li>
+            {% endif %}
         </ul>
 
     </div>

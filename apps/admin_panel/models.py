@@ -15,6 +15,9 @@ class WebsiteSettingModel(models.Model):
     logo_image = models.ImageField()
     favicon = models.ImageField()
     copyright = models.CharField(max_length=200,blank=True,null=True)
-    
+    class Meta:
+        permissions = (
+            ('view_dashboard', 'Can View Dashboard'),
+        )
 
 

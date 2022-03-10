@@ -18,7 +18,7 @@ class AppointmentModel(models.Model):
     has_already_appointed = models.BooleanField(default=False)
     report_file = models.FileField(upload_to='doctor/appointment/report',default='hospital/default.png',blank=True,null=True)
     reffer_user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='patient',null=True)
-    reffer_doctor = models.OneToOneField(User,on_delete=models.CASCADE,related_name='doctor',null=True)
+    reffer_doctor = models.ForeignKey(User,on_delete=models.CASCADE,related_name='doctor',null=True)
 
     def __str__(self):
-        return self.patient_first_name+' '+self.patient_last_name+ '( Dr. '+self.reffer_doctor.first_name+' '+self.reffer_doctor.last_name+')'
+        return self.patient_first_name+' '+self.patient_last_name

@@ -14,6 +14,7 @@ from django.views.generic import View
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from apps.accounts.forms import (SignupForm,
                                 UserUpadteForm,
                                 ResetPasswordForm,
@@ -23,6 +24,7 @@ from apps.accounts.forms import (SignupForm,
 from django.contrib.auth.hashers import check_password
 from apps.accounts.models import BasicUserProfile
 from django.contrib.auth.models import Group
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 import string    
 import random
 
@@ -54,8 +56,13 @@ class GLoginView(View):
             print('notvalid')
             return render(request,self.template_name,{'form':form})
 
-class GPasswordResetView(View):
+class GPasswordResetView(PermissionRequiredMixin,View):
     template_name = 'admin/c-panel/pages/user_management/users/user_reset_password.html'
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+         return self.request.user.is_superuser
+
     def get(self,request,*args,**kwargs):
         form = ResetPasswordForm()
         return render(request,self.template_name,{'form':form,'nav_link':'users'})
@@ -78,10 +85,14 @@ class GPasswordResetView(View):
         else:
             form = ResetPasswordForm()
             messages.warning(request,'Sorry can\'t change password please try again later')
-            return render(request,self.template_name,{'form':form,'nav_link':'users'})
+            return render(request,self.template_name,{'form':form,'nav_link':'users','page_name':'User Management'})
             
-class GChangePasswordView(View):
+class GChangePasswordView(PermissionRequiredMixin,View):
     template_name = 'admin/c-panel/pages/user_management/users/change_password.html'
+    login_url = settings.LOGIN_URL
+    
+    def has_permission(self):
+         return self.request.user.is_staff
     def get(self,request,*args,**kwargs):
         form = ChangePasswordDashboardForm()
         return render(request,self.template_name,{'form':form,'nav_link':'users'})
@@ -113,9 +124,9 @@ class GChangePasswordView(View):
         else:
             form = ResetPasswordForm()
             messages.warning(request,'Sorry can\'t change password please try again later')
-            return render(request,self.template_name,{'form':form,'nav_link':'users'})
+            return render(request,self.template_name,{'form':form,'nav_link':'users','page_name':'User Management'})
 
-class ChangePasswordFront(View):
+class ChangePasswordFront(LoginRequiredMixin,View):
     template_name = 'frontend/pages/change_password/change_password.html'
     def get(self,request,*args,**kwargs):
         form = ChangePasswordDashboardForm()
@@ -156,10 +167,12 @@ class GLogoutView(View):
         messages.success(request,'Successfully logout')
         return HttpResponseRedirect(settings.LOGIN_URL)
 
-class GUserListView(ListView):
+class GUserListView(PermissionRequiredMixin,ListView):
     template_name = 'admin/c-panel/pages/user_management/users/user_list.html'
 
     model = User
+    def has_permission(self):
+         return self.request.user.is_superuser
     def get_queryset(self,*args,**kwargs):
 
         qs = super(GUserListView,self).get_queryset(*args,**kwargs)
@@ -169,32 +182,47 @@ class GUserListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'users' 
+        context["page_name"] = 'User Management' 
         return context
 
-class SignUpViewAdmin(CreateView):
+class SignUpViewAdmin(PermissionRequiredMixin,CreateView):
 
     form_class = SignupForm
     success_url = reverse_lazy('login')
     template_name = 'admin/c-panel/pages/user_management/users/user_add.html'
-    
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+         return self.request.user.is_superuser
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'users' 
+        context["page_name"] = 'User Management' 
         return context
-    # def form_valid(self,form):
-    #     self.object = form.save(commit=False)
-    #     random_password = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 10))    
-    #     self.object.password = random_password
-    #     self.object.save()
+    def form_valid(self,form):
+        self.object = form.save(commit=False)
+        random_password = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 10))    
+        self.object.set_password(random_password) 
+        self.object.save()
+        
+        first_name = form.cleaned_data['first_name']
+        last_name = form.cleaned_data['last_name']
+        email = form.cleaned_data['email']
+        username = form.cleaned_data['username']
+        try:
+            if email:
+                send_mail(
+                        subject='Welcome'+ first_name + ' '+ last_name +' to MedCore,',
+                        message='Your user account is successfully created in Medcore pleact login with following credentials\nUsername: '+username +'\nPassword: '+ random_password+'\n Thank you.\n\n Please do not share this credential to any one.',
+                        from_email=settings.EMAIL_HOST_USER,
+                        recipient_list=[email],
+                        fail_silently=True,
+                    )   
+        except Exception as e:
+            messages.warning(request,'Error occured whlile creating account.')
 
-    #     email = form.cleaned_data['email']
-    #     try:
-    #         if email:
-    #             print('Email',email)
-    #     except Exception as e:
-    #         messages.warning(request,'Error occured whlile creating account.')
+        return super(SignUpViewAdmin, self).form_valid(form)
 
-    #     return super(SignUpViewAdmin, self).form_valid(form)
 class SignUpViewFront(View):
 
     template_name = 'frontend/pages/signup/user_signup.html'
@@ -237,7 +265,7 @@ class SignUpViewFront(View):
             print('what the heck')
             messages.warning(request,'Sorry cannot signup now please try again later.')
             return render(request,self.template_name,{'form':form})
-class ProfileViewFront(View):
+class ProfileViewFront(LoginRequiredMixin,View):
 
     template_name = 'frontend/pages/update_profile/update_profile.html'
 
@@ -288,12 +316,16 @@ class ProfileViewFront(View):
             messages.warning(request,'Sorry cannot update your profile now please try again later.')
             return render(request,self.template_name,{'form':form})
 
-class GUpdateUserAdmin(SuccessMessageMixin,UpdateView):
+class GUpdateUserAdmin(SuccessMessageMixin,PermissionRequiredMixin,UpdateView):
     model = User
     form_class = UserUpadteForm
     template_name = 'admin/c-panel/pages/user_management/users/user_update.html'
     success_message = "User Profile Updated Successfully."
     pk_url_kwarg = 'pk'
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+         return self.request.user.is_superuser
 
     def get_success_url(self, *args, **kwargs):
         return '/accounts/list/'
@@ -301,15 +333,20 @@ class GUpdateUserAdmin(SuccessMessageMixin,UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'users' 
+        context["page_name"] = 'User Management' 
         return context
 
 
 
-class GDeleteUserConfirmAdmin(SuccessMessageMixin,DeleteView):
+class GDeleteUserConfirmAdmin(SuccessMessageMixin,PermissionRequiredMixin,DeleteView):
 
     template_name = 'admin/c-panel/pages/user_management/users/delete_user.html'
     success_message = "User Delete Successfully."
     pk_url_kwarg = 'pk'
+    login_url = settings.LOGIN_URL
+
+    def has_permission(self):
+         return self.request.user.is_superuser
 
     def get_success_url(self, *args, **kwargs):
         return '/accounts/list/'
@@ -322,6 +359,7 @@ class GDeleteUserConfirmAdmin(SuccessMessageMixin,DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["nav_link"] = 'users' 
+        context["page_name"] = 'User Namagement' 
         return context
 
     def delete(self, request, *args, **kwargs):

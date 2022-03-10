@@ -57,7 +57,7 @@ class DoctorSignupForm(forms.Form):
     current_address = forms.CharField(required=True,max_length=255)
     doctor_regestriation_no = forms.CharField(max_length=255,required=True)
     country = forms.CharField(max_length=255,required=True)
-    private_gmail = forms.EmailField(required=False,max_length=255)
+    private_gmail = forms.EmailField(required=True,max_length=255)
     profile_image = forms.ImageField(required=False)
     medical_specialties = forms.ChoiceField(choices=MEDICAL_SPECIALS)
     hospital = forms.ModelChoiceField(
