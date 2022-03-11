@@ -1,0 +1,144 @@
+{% extends 'frontend/pages/_layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block page_content %}
+
+<section class="doctors section mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="doctors-inner text-center">
+                    <div class="heading">
+                        <h2>Hospital Information</h2>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="hospital_banner">
+                <img class="img-fluid" src="{{object.hospital_image.url}}"/>
+                <img class="hospital_logo" src="{{object.hospital_logo.url}}"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!--==================
+        About Part HTML Start
+        ===================-->
+        
+        <section id="about" class="about section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="about-inner text-center">
+                            <div class="heading">
+                                <h2>About Hospital</h2>
+                            </div>
+    
+                            <p>{{ object.hospital_description}}</p>
+                            <p>{{ object.hospital_provience}},{{object.hospital_city}},{{object.hospital_location}}</p>
+                            <p>{{ object.hospital_webiste_url}}</p>
+                            <p>{{ object.emergency_phone}} /{{ object.reception_phone}}</p>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </section>
+    
+        <!--==================
+        About Part HTML End
+        ===============-->
+<!--==================
+        Our Services Part HTML Start
+        ===================-->
+    
+        <section id="services" class="services section">
+            <div class="container">
+                <div class="row" id="service_list">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="services-inner text-center">
+                            <div class="heading">
+                                <h2>Our Services</h2>
+                            </div>
+    
+                        </div>
+    
+                    </div>
+
+                        {% for service in object.hospital_services.all %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="ser-inner">
+                            <div class="number-ser">
+                                {% autoescape off %}
+                                {{service.service_icon}}
+                                {% endautoescape %}
+                                
+    
+                                <h5>{% if forloop.counter < 9 %}0{% endif %}{{forloop.counter}}</h5>
+                            </div>
+                            <h3>{{service.service_name}}</h3>
+                            <p>{{service.service_desc}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    
+    
+                </div>
+            </div>
+        </section>
+    
+        <!--==================
+        Our Services Part HTML End
+        ===============-->
+<!--========================
+         Connect Doctors Part HTML Start
+        ==========================-->
+        <section id="doctors" class="doctors section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="doctors-inner text-center">
+                            <div class="heading">
+                                <h2>Our Doctors</h2>
+                            </div>
+    
+                        </div>
+    
+                    </div>
+                </div>
+    
+                <div class="row doctor-slick">
+                    {% for doctor in doctors %}
+                    <div class="col-md-4">
+                        <div class="doctors-inner">
+                            <div class="doc-img text-center">
+                                <img src="/media/{{doctor.profile_image}}" class="img-fluid" alt="Symptom">
+                            </div>
+                            <div class="doc-txt text-center">
+                                <h4>Dr. {{doctor.reffer_user.get_full_name}}</h4>
+                                <p class="doc-border">{{doctor.medical_specialties}}</p>
+                                <p>Phone: {{doctor.personal_phone_no}}</p>
+                                <div class="btn-bar">
+                                    <a href="{% url 'register_appointment'  pk=doctor.id %}" class="" >Get Appointment</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+    
+                </div>
+            </div>
+        </section>
+    
+        <!--======================
+         Connect Doctors Part HTML End
+        =======================-->
+
+  {% endblock page_content%}

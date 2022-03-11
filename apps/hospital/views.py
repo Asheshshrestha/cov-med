@@ -7,9 +7,12 @@ from django.urls.base import reverse_lazy
 from django.shortcuts import HttpResponse, HttpResponseRedirect, get_object_or_404, redirect, render
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from django.db.models import Q
 
+from apps.accounts.models import BasicUserProfile
 from apps.hospital.models import HospitalModel
 from apps.hospital.forms import HospitalModelForm
+from apps.services.models import HospitalServiceModule
 
 class HospitalIndex(LoginRequiredMixin,ListView):
 
@@ -73,3 +76,20 @@ class DeleteHospital(SuccessMessageMixin,DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.warning(self.request, self.success_message)
         return super(DeleteHospital, self).delete(request, *args, **kwargs)
+
+class HospitalDetailWithDoctorView(LoginRequiredMixin,DetailView):
+    template_name = 'frontend/pages/hospital/hospital_details.html'
+    pk_url_kwarg = 'pk'
+    
+    def get_object(self):
+        id_ = self.kwargs.get("pk")
+        return  get_object_or_404(HospitalModel,id=id_)
+
+    def get_context_data(self, **kwargs):
+        id_ = self.kwargs.get("pk")
+        doctors = BasicUserProfile.objects.filter(Q(is_doctor = True) & Q(hospital__id = id_))
+        context = super().get_context_data(**kwargs)
+        context['doctors'] = doctors
+        return context
+       
+        return context

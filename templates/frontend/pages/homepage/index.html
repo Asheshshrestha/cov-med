@@ -447,7 +447,7 @@
                                 <p class="doc-border">{{hospital.hospital_provience}} {{hospital.hospital_city}}</p>
                                 <p>Phone: {{hospital.reception_phone}}/{{hospital.emergency_phone}}</p>
                                 <div class="btn-bar">
-                                    <a href="#" class="" >About Hospital</a>
+                                    <a href="{% url 'hospital_detail_front' pk=hospital.id %}" class="" >About Hospital</a>
                                     </div>
                             </div>
                         </div>

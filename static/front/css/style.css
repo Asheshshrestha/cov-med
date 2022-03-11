@@ -930,6 +930,20 @@ NewsLetter Modal Part CSS End
      About Part CSS Start-home-1 End
 =================================*/
 
+.hospital_banner {
+    position: relative;
+    display: block;
+}
+
+.hospital_banner>.hospital_logo {
+    left: 5%;
+    top: 75%;
+    position: absolute;
+    margin-top: -25px;
+    margin-left: -25px;
+    height: 135px;
+}
+
 
 /*====================================
     Corona Virus Case Part CSS Start
