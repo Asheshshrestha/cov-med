@@ -17,7 +17,7 @@ class HospitalModel(models.Model):
     hospital_services = models.ManyToManyField(HospitalServiceModule)
     hospital_webiste_url = models.URLField(max_length=500,blank=True,null=True)
     hospital_logo = models.ImageField(upload_to='hospital/logo',default='hospital/default.png',blank=True,null=True)
-    hospital_image = models.ImageField(upload_to='hospital/images',default='hospital/default.png',blank=True,null=True)
+    hospital_image = models.ImageField(upload_to='hospital/images',default='hospital/default_hospital.png',blank=True,null=True)
     hospital_description = models.TextField(max_length=1040,blank=True,null=True)
 
     def __str__(self):

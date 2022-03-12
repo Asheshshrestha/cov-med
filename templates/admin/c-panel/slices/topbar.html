@@ -7,7 +7,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><strong><img src="{{ website.logo_image.url }}" height=40/> </strong></a>
+                <a class="navbar-brand" href="{% url 'index'%}"><strong><img src="{{ website.logo_image.url }}" height=40/> </strong></a>
 				
             <div id="sideNav" href="#">
             </div>
@@ -25,10 +25,14 @@
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                             </li>
+                            {% if request.user.is_superuser%}
                             <li><a href="{% url 'setting' %}"><i class="fa fa-cog"></i> Settings</a>
                             </li>
+                            {% endif %}
+                            {% if request.user.is_staff%}
                             <li><a href="{% url 'change_password' %}"><i class="fas fa-key"></i> Change Passowrd</a>
                             </li>
+                            {% endif %}
                             <li><a href="{% url 'index_home' %}"><i class="fa fa-home"></i>Home</a>
                             </li>
                             <li class="divider"></li>

@@ -173,7 +173,44 @@ $(function () {
 		  ]
         
     });
-    
+    $('.hospital-slick').slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        swipeToSlide: true,
+        fade: false,
+        verticalSwiping: true,
+        autoplaySpeed: 3200,
+        arrows: false,
+        responsive: [
+            {
+                breakpoint: 800,
+                settings: {
+                   arrows: false,
+                    autoplay: true,
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    swipeToSlide: false,
+                    touchMove: false
+                }
+			},
+            {
+                breakpoint: 767,
+                settings: {
+                    fade: true,
+                    autoplay: true,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    swipe: false,
+                     swipeToSlide: false,
+                    touchMove: false
+                }
+			}
+		  ]
+        
+    });
 /* -------------------------------------
 	          Arraw				
 	 	-------------------------------------- */

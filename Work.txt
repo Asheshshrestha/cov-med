@@ -45,8 +45,6 @@ User Module
 -User Panel View 10
 
 Total Hour = 64 hr
-Per Hr charge = NRS 500
-Total Estimated Cost = 64*500 = RS 32000
 
 
 
